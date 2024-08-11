@@ -1,27 +1,27 @@
 // requirements
 const mongoose = require("mongoose")
-const model_note = require("../models/note")
+const model_car = require("../models/car")
 
-// view all notes
-const get_note_all = async (req,res) => {
+// view all cars
+const get_car_all = async (req, res) => {
     try{
-        const notes = await model_note.find({})
-        res.status(200).json(notes)
+        const cars = await model_car.find({})
+        res.status(200).json(cars)
     }catch(error){
-        res.status(404).json( {error: "seem like no notes available" } )
+        res.status(404).json( {error: "seem like no cars available" } )
     }
 }
 
-// view a single note
-const get_note_one = async (req,res) => {
+// view a single car
+const get_car_one = async (req, res) => {
     try{
         const {id} = req.params
         // id validity check
         if(!mongoose.Types.ObjectId.isValid(id)){ return res.status(404).json( {error: "seems id not valid" } )}
 
-        const note = await model_note.findById(id)
+        const car = await model_car.findById(id)
         //responce
-        res.status(200).json(note)
+        res.status(200).json(car)
 
     }catch(error){
         //responce
@@ -29,16 +29,16 @@ const get_note_one = async (req,res) => {
     }
 }
 
-// delete note
-const delete_note = async (req,res) => {
+// delete car
+const delete_car = async (req, res) => {
     try{
         const {id} = req.params
         // id validity check
         if(!mongoose.Types.ObjectId.isValid(id)){ return res.status(404).json( {error: "seems id not valid" } )}
 
-        const note = await model_note.findOneAndDelete({_id: id}) // in mongodb id is as _id
+        const car = await model_car.findOneAndDelete({_id: id}) // in mongodb id is as _id
         //responce
-        res.status(200).json(note)
+        res.status(200).json(car)
 
     }catch(error){
         //responce
@@ -46,16 +46,16 @@ const delete_note = async (req,res) => {
     }
 }
 
-//update note
-const update_note = async (req,res) => {
+//update car
+const update_car = async (req, res) => {
     try{
         const {id} = req.params
         // id validity check
         if(!mongoose.Types.ObjectId.isValid(id)){ return res.status(404).json( {error: "seems id not valid" } )}
 
-        const note = await model_note.findOneAndUpdate( {_id: id}, {...req.body} ) // ...(object) --> spread properties
+        const car = await model_car.findOneAndUpdate( {_id: id}, {...req.body} ) // ...(object) --> spread properties
         //responce
-        res.status(200).json(note)
+        res.status(200).json(car)
 
     }catch(error){
         //responce
@@ -63,13 +63,13 @@ const update_note = async (req,res) => {
     }
 }
 
-// new note
-const add_note = async(req, res) => {
-    const { name, user, content } = req.body // deconstruction
+// new car
+const add_car = async(req, res) => {
+    const { brand, model, numberplate } = req.body // deconstruction
     try{
-        const note = await model_note.create( {name, user, content} ) // add note to db
+        const car = await model_car.create( {brand, model, numberplate} ) // add car to db
         // response
-        res.status(200).json(note)
+        res.status(200).json(car)
 
     }catch(error){
         // response
@@ -84,9 +84,9 @@ const add_note = async(req, res) => {
 
 // export
 module.exports = {
-    add_note,
-    get_note_all,
-    get_note_one,
-    update_note,
-    delete_note
+    add_car,
+    get_car_all,
+    get_car_one,
+    update_car,
+    delete_car
 }
