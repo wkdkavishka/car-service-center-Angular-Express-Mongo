@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import {NavBarComponent} from "./main-components/nav-bar/nav-bar.component";
-import {AddCarComponent} from "./single-use-components/add-car/add-car.component";
+import {NavBarComponent} from "./major-components/nav-bar/nav-bar.component";
+import {AddCarComponent} from "./components/add-car/add-car.component";
 
 @Component({
   selector: 'app-root',
@@ -14,6 +14,9 @@ import {AddCarComponent} from "./single-use-components/add-car/add-car.component
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
+
+
 export class AppComponent {
   title = 'car-service-center-Angular';
+
 }

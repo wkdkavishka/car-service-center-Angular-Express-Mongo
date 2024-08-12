@@ -1,13 +1,15 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {NgForOf} from "@angular/common";
+import {CarDetailsComponent} from "../car-details/car-details.component";
 
 @Component({
   selector: 'app-add-car',
   standalone: true,
   imports: [
     FormsModule,
-    NgForOf
+    NgForOf,
+    CarDetailsComponent
   ],
   templateUrl: './add-car.component.html',
   styleUrl: './add-car.component.scss'
@@ -30,12 +32,14 @@ export class AddCarComponent implements OnInit {
   cars: Array<{ brand: string; model: string; numberplate: string }> = [];
 
   onSubmit() {
-    // add car to cars-array
-    this.cars.push({
+    // Create a newCar object
+    const newCar = {
       brand: this.car_brand,
       model: this.car_model,
       numberplate: this.car_numberplate,
-    });
+    };
+    // add car to cars-array
+    this.cars.push(newCar);
     // clear fields after submit
     this.car_brand = '';
     this.car_model = '';
@@ -44,4 +48,7 @@ export class AddCarComponent implements OnInit {
     this.carInput.nativeElement.focus();
   }
 
+  deleteCar(index: number) {
+    this.cars.splice(index, 1);
+  }
 }

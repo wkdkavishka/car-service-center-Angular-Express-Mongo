@@ -69,19 +69,30 @@
       <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr>
+          <th class="px-6 py-3" scope="col">#</th>
           <th class="px-6 py-3" scope="col">Brand</th>
           <th class="px-6 py-3" scope="col">Model</th>
           <th class="px-6 py-3" scope="col">N-Plate</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let car of cars" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <tr *ngFor="let car of cars; let i = index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <td class="px-6 py-4">{{ i + 1 }}</td>
           <td class="px-6 py-4">{{ car.brand }}</td>
           <td class="px-6 py-4">{{ car.model }}</td>
           <td class="px-6 py-4">{{ car.numberplate }}</td>
         </tr>
         </tbody>
       </table>
+    </section>
+    <!--  card for the newly added car  -->
+    <section>
+      <app-car-details *ngFor="let car of cars; let i = index"
+                       [car]="car"
+                       [index]="i"
+                       (d_index)="deleteCar($event)"
+      >
+      </app-car-details>
     </section>
   </div>
 
