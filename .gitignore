@@ -41,13 +41,15 @@ testem.log
 .DS_Store
 Thumbs.db
 
-##########################3
+##########################
 /server/node_modules/
 /car-service-center-Angular-front/.angular/
 /car-service-center-Angular-front/node_modules/
-/car-service-center-Express-back/node_modules/
-
 /car-service-center-Angular-front/dist
 /car-service-center-Angular-front/tmp
 /car-service-center-Angular-front/out-tsc
 /car-service-center-Angular-front/bazel-out
+
+
+/car-service-center-Express-back/node_modules/
+/car-service-center-Express-back/dist/

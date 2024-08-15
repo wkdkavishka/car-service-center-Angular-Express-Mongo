@@ -7,7 +7,7 @@ import routes from './routes/routes'; // Import routes
 // Configuration variables
 // todo -> transport to a .env file on production
 const port: number = 4000;
-const dbName: string = "web_notes";
+const dbName: string = "car-service";
 const databasePath: string = `mongodb://localhost:27017/${dbName}`;
 
 // Initialize Express app

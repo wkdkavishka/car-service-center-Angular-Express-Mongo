@@ -1,26 +1,26 @@
 import express from 'express';
 // Import the controller functions
-import { addNote, getNoteAll, getNoteOne, updateNote, deleteNote } from './controller';
+import { addCar, getCarAll, getCarOne, updateCar, deleteCar } from './controller';
 
 // Create a router instance
 const router = express.Router();
 
 // Define routes --------------------------
 
-// Home route: View all notes
-router.get('/', getNoteAll); // READ all notes
+// Home route: View all cars
+router.get('/', getCarAll); // READ all cars
 
-// View a single note by ID
-router.get('/get-note/:id', getNoteOne); // READ a specific note
+// View a single car by ID
+router.get('/get-car/:id', getCarOne); // READ a specific car
 
-// Add a new note
-router.post('/', addNote); // CREATE a note
+// Add a new car
+router.post('/', addCar); // CREATE a car
 
-// Update an existing note by ID
-router.patch('/:id', updateNote); // UPDATE a specific note
+// Update an existing car by ID
+router.patch('/:id', updateCar); // UPDATE a specific car
 
-// Delete a note by ID
-router.delete('/:id', deleteNote); // DELETE a specific note
+// Delete a car by ID
+router.delete('/:id', deleteCar); // DELETE a specific car
 
 //----------------------------------------
 

@@ -1,39 +1,19 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import Note from '../models/note';
+import Car from '../models/car';
 
-// View all notes
-export const getNoteAll = async (req: Request, res: Response): Promise<Response> => {
+// View all cars
+export const getCarAll = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const notes = await Note.find({});
-        return res.status(200).json(notes);
+        const cars = await Car.find({});
+        return res.status(200).json(cars);
     } catch (e) {
-        return res.status(404).json({ e: "Seems like no notes are available" });
+        return res.status(404).json({ e: "Seems like no cars are available" });
     }
 };
 
-// View a single note
-export const getNoteOne = async (req: Request, res: Response): Promise<Response> => {
-    try {
-        const { id } = req.params;
-        // Check if the ID is valid
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(404).json({ e: "Seems ID is not valid" });
-        }
-
-        const note = await Note.findById(id);
-        if (note) {
-            return res.status(200).json(note);
-        } else {
-            return res.status(404).json({ e: "No such note found" });
-        }
-    } catch (e) {
-        return res.status(404).json({ e: "Seems no such file" });
-    }
-};
-
-// Delete a note
-export const deleteNote = async (req: Request, res: Response): Promise<Response> => {
+// View a single car
+export const getCarOne = async (req: Request, res: Response): Promise<Response> => {
     try {
         const { id } = req.params;
         // Check if the ID is valid
@@ -41,19 +21,19 @@ export const deleteNote = async (req: Request, res: Response): Promise<Response>
             return res.status(404).json({ e: "Seems ID is not valid" });
         }
 
-        const note = await Note.findOneAndDelete({ _id: id });
-        if (note) {
-            return res.status(200).json(note);
+        const car = await Car.findById(id);
+        if (car) {
+            return res.status(200).json(car);
         } else {
-            return res.status(404).json({ e: "No such note found" });
+            return res.status(404).json({ e: "No such car found" });
         }
     } catch (e) {
         return res.status(404).json({ e: "Seems no such file" });
     }
 };
 
-// Update a note
-export const updateNote = async (req: Request, res: Response): Promise<Response> => {
+// Delete a car
+export const deleteCar = async (req: Request, res: Response): Promise<Response> => {
     try {
         const { id } = req.params;
         // Check if the ID is valid
@@ -61,24 +41,44 @@ export const updateNote = async (req: Request, res: Response): Promise<Response>
             return res.status(404).json({ e: "Seems ID is not valid" });
         }
 
-        const note = await Note.findOneAndUpdate({ _id: id }, { ...req.body }, { new: true });
-        if (note) {
-            return res.status(200).json(note);
+        const car = await Car.findOneAndDelete({ _id: id });
+        if (car) {
+            return res.status(200).json(car);
         } else {
-            return res.status(404).json({ e: "No such note found" });
+            return res.status(404).json({ e: "No such car found" });
         }
     } catch (e) {
         return res.status(404).json({ e: "Seems no such file" });
     }
 };
 
-// Add a new note
-export const addNote = async (req: Request, res: Response): Promise<Response> => {
+// Update a car
+export const updateCar = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const { id } = req.params;
+        // Check if the ID is valid
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({ e: "Seems ID is not valid" });
+        }
+
+        const car = await Car.findOneAndUpdate({ _id: id }, { ...req.body }, { new: true });
+        if (car) {
+            return res.status(200).json(car);
+        } else {
+            return res.status(404).json({ e: "No such car found" });
+        }
+    } catch (e) {
+        return res.status(404).json({ e: "Seems no such file" });
+    }
+};
+
+// Add a new car
+export const addCar = async (req: Request, res: Response): Promise<Response> => {
     const { name, user, content } = req.body; // deconstruction
     try {
-        const note = await Note.create({ name, user, content });
-        // console.log(note); // testing ########
-        return res.status(200).json(note);
+        const car = await Car.create({ name, user, content });
+        // console.log(car); // testing ########
+        return res.status(200).json(car);
     } catch (e) {
         return res.status(400).json({ e: "Seems unable to add file" });
     }

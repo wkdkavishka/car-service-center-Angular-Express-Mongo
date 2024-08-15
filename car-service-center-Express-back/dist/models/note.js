@@ -24,7 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
-// Define the schema for the Note model
+// Define the schema for the Cars model
 const NoteSchema = new mongoose_1.Schema({
     name: { type: String, required: true },
     user: { type: String, required: true },

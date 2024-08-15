@@ -1,14 +1,14 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
 
-// Define the TypeScript interface for the Note document
-interface Note extends Document {
+// Define the TypeScript interface for the Car document
+interface Car extends Document {
     name: string;
     user: string;
     content: string;
 }
 
-// Define the schema for the Note model
-const NoteSchema: Schema<Note> = new Schema(
+// Define the schema for the Car model
+const CarSchema: Schema<Car> = new Schema(
     {
         name: { type: String, required: true },
         user: { type: String, required: true },
@@ -18,5 +18,5 @@ const NoteSchema: Schema<Note> = new Schema(
 );
 
 // Create and export the model
-const Note: Model<Note> = mongoose.model<Note>('Note', NoteSchema);
-export default Note;
+const Car: Model<Car> = mongoose.model<Car>('Car', CarSchema);
+export default Car;
