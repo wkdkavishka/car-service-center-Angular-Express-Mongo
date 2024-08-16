@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import Car from '../models/car';
 
 // View all cars
-export const getCarAll = async (req: Request, res: Response): Promise<Response> => {
+export const getAllCars = async (req: Request, res: Response): Promise<Response> => {
     try {
         const cars = await Car.find({});
         return res.status(200).json(cars);
@@ -13,7 +13,7 @@ export const getCarAll = async (req: Request, res: Response): Promise<Response> 
 };
 
 // View a single car
-export const getCarOne = async (req: Request, res: Response): Promise<Response> => {
+export const getACar = async (req: Request, res: Response): Promise<Response> => {
     try {
         const { id } = req.params;
         // Check if the ID is valid
@@ -33,7 +33,7 @@ export const getCarOne = async (req: Request, res: Response): Promise<Response> 
 };
 
 // Delete a car
-export const deleteCar = async (req: Request, res: Response): Promise<Response> => {
+export const deleteACar = async (req: Request, res: Response): Promise<Response> => {
     try {
         const { id } = req.params;
         // Check if the ID is valid
@@ -53,7 +53,7 @@ export const deleteCar = async (req: Request, res: Response): Promise<Response> 
 };
 
 // Update a car
-export const updateCar = async (req: Request, res: Response): Promise<Response> => {
+export const updateACar = async (req: Request, res: Response): Promise<Response> => {
     try {
         const { id } = req.params;
         // Check if the ID is valid
@@ -73,7 +73,7 @@ export const updateCar = async (req: Request, res: Response): Promise<Response> 
 };
 
 // Add a new car
-export const addCar = async (req: Request, res: Response): Promise<Response> => {
+export const addACar = async (req: Request, res: Response): Promise<Response> => {
     const { car_brand, car_model, car_numberplate } = req.body; // deconstruction
     try {
         const car = await Car.create({ car_brand, car_model, car_numberplate });
