@@ -11,8 +11,7 @@ import {Car} from "../../../models/car";
 })
 export class CarDetailsComponent {
 
-  constructor(
-    private carService: CarService) {
+  constructor(private carService: CarService) {
 
   }
 
@@ -22,7 +21,7 @@ export class CarDetailsComponent {
   index: number = -1; // to be safe initialized to -1
 
   onDelete() {
-    this.d_index.emit(this.index);
+    this.carService.deleteACar(this.car);
   }
 
   @Output()

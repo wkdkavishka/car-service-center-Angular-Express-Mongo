@@ -22,4 +22,8 @@ export class CarService {
     return this.cars;
   }
 
+  deleteACar(car: Car): void {
+    this.cars.splice(this.cars.indexOf(car), 1);
+  }
+
 }
