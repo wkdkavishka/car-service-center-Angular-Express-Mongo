@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="grid grid-cols-2 gap-4">
-    <!-- insert a car -->
+    <!-- addACar a car -->
     <section>
       <form (ngSubmit)="onSubmit()" class="max-w-md mx-auto py-4">
         <div class="grid md:grid-cols-2 md:gap-6">
@@ -78,9 +78,9 @@
         <tbody>
         <tr *ngFor="let car of cars; let i = index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
           <td class="px-6 py-4">{{ i + 1 }}</td>
-          <td class="px-6 py-4">{{ car.brand }}</td>
-          <td class="px-6 py-4">{{ car.model }}</td>
-          <td class="px-6 py-4">{{ car.numberplate }}</td>
+          <td class="px-6 py-4">{{ car.car_brand }}</td>
+          <td class="px-6 py-4">{{ car.car_model }}</td>
+          <td class="px-6 py-4">{{ car.car_numberplate }}</td>
         </tr>
         </tbody>
       </table>

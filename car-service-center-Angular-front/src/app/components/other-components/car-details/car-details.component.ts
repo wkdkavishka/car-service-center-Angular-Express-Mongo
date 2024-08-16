@@ -1,4 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {CarService} from "../../../services/car.service";
+import {Car} from "../../../models/car";
 
 @Component({
   selector: 'app-car-details',
@@ -9,8 +11,13 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class CarDetailsComponent {
 
+  constructor(
+    private carService: CarService) {
+
+  }
+
   @Input()
-  car!: { brand: string; model: string; numberplate: string };
+  car!: Car;
   @Input()
   index: number = -1; // to be safe initialized to -1
 
