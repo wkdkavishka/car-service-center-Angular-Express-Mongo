@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container mx-auto">
 
   <div class="grid grid-cols-2 gap-4">
     <!-- addACar a car -->
     <section>
-      <form (ngSubmit)="onSubmit()" class="max-w-md mx-auto py-4">
+      <form (ngSubmit)="onSubmit()" class="max-w-md mx-auto py-1">
         <div class="grid md:grid-cols-2 md:gap-6">
           <div class="relative z-0 w-full mb-5 group">
             <input #carInput [(ngModel)]="car_brand"
@@ -73,27 +73,33 @@
           <th class="px-6 py-3" scope="col">Brand</th>
           <th class="px-6 py-3" scope="col">Model</th>
           <th class="px-6 py-3" scope="col">N-Plate</th>
+          <th class="px-2 py-3" scope="col">Del</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let car of cars; let i = index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-          <td class="px-6 py-4">{{ i + 1 }}</td>
-          <td class="px-6 py-4">{{ car.car_brand }}</td>
-          <td class="px-6 py-4">{{ car.car_model }}</td>
-          <td class="px-6 py-4">{{ car.car_numberplate }}</td>
+          <td class="px-2 py-1">{{ i + 1 }}</td>
+          <td class="px-2 py-1">{{ car.car_brand }}</td>
+          <td class="px-2 py-1">{{ car.car_model }}</td>
+          <td class="px-2 py-1">{{ car.car_numberplate }}</td>
+          <td type="button"
+              class="px-2 py-1 text-sm leading-none  rounded text-white hover:border-transparent hover:bg-red-600 my-1 inline-flex"
+              (click)="onDelete( car )">
+            x
+          </td>
         </tr>
         </tbody>
       </table>
     </section>
     <!--  card for the newly added car  -->
-    <section>
-      <app-car-details *ngFor="let car of cars; let i = index"
-                       [car]="car"
-                       [index]="i"
-                       (d_index)="deleteCar($event)"
-      >
-      </app-car-details>
-    </section>
+    <!--    <section>-->
+    <!--      <app-car-details *ngFor="let car of cars; let i = index"-->
+    <!--                       [car]="car"-->
+    <!--                       [index]="i"-->
+    <!--      >-->
+    <!--&lt;!&ndash;        (d_index)="deleteCar($event)"&ndash;&gt;-->
+    <!--      </app-car-details>-->
+    <!--    </section>-->
   </div>
 
 </div>

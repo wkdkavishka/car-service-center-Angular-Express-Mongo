@@ -66,7 +66,11 @@ export class AddCarComponent implements OnInit {
     this.carInput.nativeElement.focus();
   }
 
-  deleteCar(index: number) {
-    this.cars.splice(index, 1);
+  // deleteCar(index: number) {
+  //   this.cars.splice(index, 1);
+  // }
+
+  onDelete(car: Car): void {
+    this.carService.deleteACar(car)
   }
 }

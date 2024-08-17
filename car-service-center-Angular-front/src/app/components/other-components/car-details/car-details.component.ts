@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CarService} from "../../../services/car.service";
 import {Car} from "../../../models/car";
 
@@ -24,6 +24,6 @@ export class CarDetailsComponent {
     this.carService.deleteACar(this.car);
   }
 
-  @Output()
-  d_index: EventEmitter<number> = new EventEmitter<number>();
+  // @Output()
+  // d_index: EventEmitter<number> = new EventEmitter<number>();
 }

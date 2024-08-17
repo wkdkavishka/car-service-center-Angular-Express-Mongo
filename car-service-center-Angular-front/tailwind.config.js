@@ -10,6 +10,9 @@ module.exports = {
         "custom-darker": "#161618",
         "custom-mid-dark": "#1F2326",
       },
+    //   container: {
+    //   padding: '2rem',
+    // },
     },
   },
   plugins: [],
