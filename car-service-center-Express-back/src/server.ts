@@ -2,7 +2,7 @@
 import express, { Request, Response, NextFunction } from 'express'; // Import express and types
 import mongoose from 'mongoose'; // Import mongoose
 import routes from './routes/routes'; // Import routes
-// import cors from 'cors'; // Uncomment if you decide to use CORS
+import cors from 'cors'; // Uncomment if you decide to use CORS
 
 // Configuration variables
 // todo -> transport to a .env file on production
@@ -38,15 +38,12 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     next(); // Pass control to the next middleware/route handler
 });
 
-/*
 // Uncomment and configure CORS if needed
 app.use(
     cors({
-        origin: "http://localhost:3000",
-        methods: ["GET", "POST"],
+        origin: "http://localhost:4200", // adds a little security
+        // methods: ["GET", "POST"],
     })
 );
-*/
-
 // Set up routes
-app.use("/express_api", routes);
+app.use("/car_service", routes);
