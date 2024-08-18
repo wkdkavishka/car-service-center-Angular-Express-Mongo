@@ -21,7 +21,7 @@ export class AddCarComponent implements OnInit {
 
   @ViewChild('carInput') carInput!: ElementRef;
 
-    // for two-way binding
+  // for two-way binding
   car_brand: string = '';
   car_model: string = '';
   car_numberplate: string = '';
@@ -32,7 +32,7 @@ export class AddCarComponent implements OnInit {
   constructor(
     private carService: CarService // service injector
   ) {
-    this.cars = this.carService.getAllCars();
+    this.carService.getAllCars().then((r) => this.cars = r);
     // console.log("constructor called"); // testing ################
 
   }
@@ -55,8 +55,7 @@ export class AddCarComponent implements OnInit {
     // this.cars seems to be sync with carService's cars list
     // add car to the service
     this.carService.addACar(newCar);
-    console.log("component --> cars",this.cars); // testing ################
-
+    console.log("component --> cars", this.cars); // test
 
     // clear fields after submit
     this.car_brand = '';

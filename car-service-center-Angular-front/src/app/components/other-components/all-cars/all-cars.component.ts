@@ -19,23 +19,17 @@ export class AllCarsComponent implements OnInit {
   constructor(
     private carService: CarService
   ) {
-    console.log(this.carService.getCars());
   }
 
   ngOnInit(): void {
-    this.fetchOnLoad();
+    this.carService.getAllCars().then((r) => this.cars = r);
   }
 
-  fetchOnLoad(): void {
-    this.carService.getCars().subscribe({
-      next: (response) => {
-        // console.log(data); // Logs the fetched data to the console
-        this.cars = response;
-      },
-      error: (err) => {
-        console.error('Error fetching cars:', err); // Logs any errors
-      },
-    });
+  refresh() {
+    this.carService.refreshCarList().then((r) => this.cars = r);
   }
 
+  onDelete(car: Car) {
+    this.carService.deleteACar(car);
+  }
 }

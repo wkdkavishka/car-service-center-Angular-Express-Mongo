@@ -1,8 +1,15 @@
 <div class="container mx-auto">
 
   <div class="grid grid-cols-2 gap-4">
+
     <!-- addACar a car -->
     <section>
+      <div class="flex justify-center items-center">
+      <!-- title -->
+      <small class="ms-2 text-4xl font-semibold text-gray-500 dark:text-gray-400 text-center">
+        Add A Car
+      </small>
+    </div>
       <form (ngSubmit)="onSubmit()" class="max-w-md mx-auto py-1">
         <div class="grid md:grid-cols-2 md:gap-6">
           <div class="relative z-0 w-full mb-5 group">
@@ -57,40 +64,42 @@
         </button>
       </form>
     </section>
-    <!-- All cars -->
-    <section>
-      <div class="flex justify-center items-center">
-        <!-- title -->
-        <small class="ms-2 text-4xl font-semibold text-gray-500 dark:text-gray-400 text-center">
-          Cars Added
-        </small>
-      </div>
-      <!-- table - all cars -->
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-        <tr>
-          <th class="px-6 py-3" scope="col">#</th>
-          <th class="px-6 py-3" scope="col">Brand</th>
-          <th class="px-6 py-3" scope="col">Model</th>
-          <th class="px-6 py-3" scope="col">N-Plate</th>
-          <th class="px-2 py-3" scope="col">Del</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let car of cars; let i = index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-          <td class="px-2 py-1">{{ i + 1 }}</td>
-          <td class="px-2 py-1">{{ car.car_brand }}</td>
-          <td class="px-2 py-1">{{ car.car_model }}</td>
-          <td class="px-2 py-1">{{ car.car_numberplate }}</td>
-          <td
-            class="px-2 py-1 text-sm leading-none  rounded text-red-500 hover:text-slate-100 hover:border-transparent hover:bg-red-600 my-1 inline-flex"
-            (click)="onDelete( car )">
-            x
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </section>
+
+<!--    &lt;!&ndash; All cars &ndash;&gt;-->
+<!--    <section>-->
+<!--      <div class="flex justify-center items-center">-->
+<!--        &lt;!&ndash; title &ndash;&gt;-->
+<!--        <small class="ms-2 text-4xl font-semibold text-gray-500 dark:text-gray-400 text-center">-->
+<!--          Cars Added-->
+<!--        </small>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; table - all cars &ndash;&gt;-->
+<!--      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">-->
+<!--        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">-->
+<!--        <tr>-->
+<!--          <th class="px-6 py-3" scope="col">#</th>-->
+<!--          <th class="px-6 py-3" scope="col">Brand</th>-->
+<!--          <th class="px-6 py-3" scope="col">Model</th>-->
+<!--          <th class="px-6 py-3" scope="col">N-Plate</th>-->
+<!--          <th class="px-2 py-3" scope="col">Del</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr *ngFor="let car of cars; let i = index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">-->
+<!--          <td class="px-2 py-1">{{ i + 1 }}</td>-->
+<!--          <td class="px-2 py-1">{{ car.car_brand }}</td>-->
+<!--          <td class="px-2 py-1">{{ car.car_model }}</td>-->
+<!--          <td class="px-2 py-1">{{ car.car_numberplate }}</td>-->
+<!--          <td-->
+<!--            class="px-2 py-1 text-sm leading-none  rounded text-red-500 hover:text-slate-100 hover:border-transparent hover:bg-red-600 my-1 inline-flex"-->
+<!--            (click)="onDelete( car )">-->
+<!--            x-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+<!--      </table>-->
+<!--    </section>-->
+
     <!--  card for the newly added car  -->
     <!--    <section>-->
     <!--      <app-car-details *ngFor="let car of cars; let i = index"-->
@@ -100,6 +109,7 @@
     <!--&lt;!&ndash;        (d_index)="deleteCar($event)"&ndash;&gt;-->
     <!--      </app-car-details>-->
     <!--    </section>-->
+
   </div>
 
 </div>
