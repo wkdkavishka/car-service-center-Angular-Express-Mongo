@@ -55,7 +55,6 @@ export class AddCarComponent implements OnInit {
     // this.cars seems to be sync with carService's cars list
     // add car to the service
     this.carService.addACar(newCar);
-    console.log("component --> cars", this.cars); // test
 
     // clear fields after submit
     this.car_brand = '';

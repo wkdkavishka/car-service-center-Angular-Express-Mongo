@@ -41,9 +41,10 @@ export class CarService {
     return this.http.get<Car[]>(url);
   }
 
-  async addACar(car: Car): Promise<void> {
-    this.cars.push(car);
-    console.log("service --> cars", this.cars); // testing ################
+  // Method to make a POST request
+  private addCar(car: Car): Observable<Car> {
+    const url = `${this.baseUrl}/car_service`; // Your API endpoint
+    return this.http.post<Car>(url, car);
   }
 
   async getAllCars(): Promise<Car[]> {
@@ -69,6 +70,17 @@ export class CarService {
       console.error('Error fetching cars:', error);
       throw error;
     }
+  }
+
+  async addACar(car: Car): Promise<void> {
+    this.addCar(car).subscribe({
+      next: (response) => {
+        console.log('Car added successfully:', response);
+      },
+      error: (error) => {
+        console.error('Error adding car:', error);
+      }
+    });
   }
 
   deleteACar(car: Car): void {
