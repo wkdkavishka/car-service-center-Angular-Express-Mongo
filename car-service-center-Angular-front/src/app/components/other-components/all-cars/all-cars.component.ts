@@ -22,7 +22,7 @@ export class AllCarsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.carService.getAllCars().then((r) => this.cars = r);
+    this.carService.AllCars().then((r) => this.cars = r);
   }
 
   refresh() {

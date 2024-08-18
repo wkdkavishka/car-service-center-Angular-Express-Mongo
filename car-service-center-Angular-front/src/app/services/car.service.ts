@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Car} from '../models/car';
-import {HttpClient} from "@angular/common/http";
-import {firstValueFrom, Observable} from "rxjs";
+import {firstValueFrom} from "rxjs";
+import {ApiService} from "./api/api.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +9,11 @@ import {firstValueFrom, Observable} from "rxjs";
 
 export class CarService {
 
-  // todo -> use .env or sth better
-  private baseUrl = 'http://localhost:4000';
-
   fetched: boolean = false;
   cars: Car[] = []; // and Empty Array of Car  // cars: Array<Car> = [];
 
   constructor(
-    private http: HttpClient,
+    private apiService: ApiService
   ) {
     this.initialize().then(
       () => console.log("Car service initialized")
@@ -27,32 +24,20 @@ export class CarService {
   // Method to initialize or refresh data
   private async initialize(): Promise<void> {
     try {
-      this.cars = await firstValueFrom(this.fetchAllCars());
+      this.cars = await firstValueFrom(this.apiService.fetchAllCars());
       this.fetched = true;
     } catch (error) {
-      console.error('Error fetching cars:', error);
+      console.error('Error initialize cars:', error);
       throw error;
     }
   }
 
-  // Method to fetch All the cars
-  private fetchAllCars(): Observable<Car[]> {
-    const url = `${this.baseUrl}/car_service/`;
-    return this.http.get<Car[]>(url);
-  }
-
-  // Method to make a POST request
-  private addCar(car: Car): Observable<Car> {
-    const url = `${this.baseUrl}/car_service`; // Your API endpoint
-    return this.http.post<Car>(url, car);
-  }
-
-  async getAllCars(): Promise<Car[]> {
+  async AllCars(): Promise<Car[]> {
     if (this.fetched) {
       return this.cars;
     } else {
       try {
-        return this.cars = await firstValueFrom(this.fetchAllCars());
+        return this.cars = await firstValueFrom(this.apiService.fetchAllCars());
       } catch (error) {
         console.error('Error fetching cars:', error);
         throw error;
@@ -64,24 +49,27 @@ export class CarService {
   async refreshCarList(): Promise<Car[]> {
     try {
       // Fetch the cars and wait for the data to be resolved
-      this.cars = await firstValueFrom(this.fetchAllCars());
+      this.cars = await firstValueFrom(this.apiService.fetchAllCars());
       return this.cars;
     } catch (error) {
-      console.error('Error fetching cars:', error);
+      console.error('Error refreshCarList :', error);
       throw error;
     }
   }
 
-  async addACar(car: Car): Promise<void> {
-    this.addCar(car).subscribe({
-      next: (response) => {
-        console.log('Car added successfully:', response);
-      },
-      error: (error) => {
-        console.error('Error adding car:', error);
-      }
-    });
+  async addACar(car: Car): Promise<Car> {
+    try {
+      // ADD and return the car
+      const response = await firstValueFrom(this.apiService.postACar(car));
+      console.log('Car added successfully:', response);
+      this.cars.push(response); // updating the local car list
+      return response;
+    } catch (error) {
+      console.error('Error Adding car:', error);
+      throw error;
+    }
   }
+
 
   deleteACar(car: Car): void {
     this.cars.splice(this.cars.indexOf(car), 1);

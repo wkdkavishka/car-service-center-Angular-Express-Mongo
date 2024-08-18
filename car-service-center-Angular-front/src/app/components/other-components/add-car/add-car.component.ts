@@ -32,7 +32,7 @@ export class AddCarComponent implements OnInit {
   constructor(
     private carService: CarService // service injector
   ) {
-    this.carService.getAllCars().then((r) => this.cars = r);
+    this.carService.AllCars().then((r) => this.cars = r);
     // console.log("constructor called"); // testing ################
 
   }
