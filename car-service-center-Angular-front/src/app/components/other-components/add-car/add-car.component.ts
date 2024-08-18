@@ -29,19 +29,19 @@ export class AddCarComponent implements OnInit {
   // cars: Array<{ brand: string; model: string; numberplate: string }> = [];
   cars: Car[] = [];
 
-  ngOnInit() {
-    // Set focus on the input element when the component is initialized
-    setTimeout(() => {
-      this.carInput.nativeElement.focus();
-    }, 0); // delay of 0 ms
-  }
-
   constructor(
     private carService: CarService // service injector
   ) {
     this.cars = this.carService.getAllCars();
     // console.log("constructor called"); // testing ################
 
+  }
+
+  ngOnInit() {
+    // Set focus on the input element when the component is initialized
+    setTimeout(() => {
+      this.carInput.nativeElement.focus();
+    }, 0); // delay of 0 ms
   }
 
   onSubmit() {

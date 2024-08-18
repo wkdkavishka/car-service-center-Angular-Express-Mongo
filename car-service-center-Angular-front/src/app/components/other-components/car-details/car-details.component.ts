@@ -17,8 +17,6 @@ export class CarDetailsComponent {
 
   @Input()
   car!: Car;
-  @Input()
-  index: number = -1; // to be safe initialized to -1
 
   onDelete() {
     this.carService.deleteACar(this.car);
