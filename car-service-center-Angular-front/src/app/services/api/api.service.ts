@@ -12,7 +12,7 @@ export class ApiService {
    */
 
   // todo -> use .env or sth better
-  private baseUrl = 'http://localhost:4000'; // api path
+  private baseUrl = 'http://localhost:4000/car_service/'; // api path
 
   constructor(
     private http: HttpClient,
@@ -21,25 +21,25 @@ export class ApiService {
 
   // Method to GET All the cars
   fetchAllCars(): Observable<Car[]> {
-    const url = `${this.baseUrl}/car_service/`;
+    const url = `${this.baseUrl}`;
     return this.http.get<Car[]>(url);
   }
 
   // Method to GET All the cars
   fetchACar(car: Car): Observable<Car> {
-    const url = `${this.baseUrl}/car_service/${car._id}`;
+    const url = `${this.baseUrl}${car._id}`;
     return this.http.get<Car>(url);
   }
 
   // Method to ADD A Car
   postACar(car: Car): Observable<Car> {
-    const url = `${this.baseUrl}/car_service/`; // Your API endpoint
+    const url = `${this.baseUrl}`; // Your API endpoint
     return this.http.post<Car>(url, car);
   }
 
   // Method to Delete A Car
   deleteACar(car: Car): Observable<Car> {
-    const url = `${this.baseUrl}/car_service/${car._id}`; // Your API endpoint
+    const url = `${this.baseUrl}${car._id}`; // Your API endpoint
     return this.http.delete<Car>(url);
   }
 }

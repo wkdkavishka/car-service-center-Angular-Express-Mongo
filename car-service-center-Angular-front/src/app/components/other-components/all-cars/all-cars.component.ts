@@ -15,6 +15,8 @@ import {Car} from "../../../models/car";
 export class AllCarsComponent implements OnInit {
 
   cars: Car[] = [];
+  // todo -> transform cars<array> to hashMaps
+  // hashMapCars = new Map<string, Car>();
 
   constructor(
     private carService: CarService
