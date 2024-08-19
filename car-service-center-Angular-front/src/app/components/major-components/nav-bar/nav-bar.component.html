@@ -1,13 +1,13 @@
 <div class="backdrop-blur-sm bg-teal-900/90 dark:bg-teal-900/70">
   <div class="container mx-auto px-0 md:px-4">
-    <nav class="flex items-center justify-between flex-wrap py-1 px-2">
+    <nav class="grid items-center py-1 px-2">
       <!-- navigation menu panel -->
-      <section>
+      <section class="flex justify-between ">
         <div
-          id="menu"
-          class="flex-auto flex-wrap px-4 md:flex md:items-center md:w-auto"
+          id="menu-1"
+          class="flex-auto flex-wrap px-4 md:flex justify-between items-center md:w-auto"
         >
-          <div class="text-sm block md:flex justify-between">
+          <div class="text-sm block md:flex ">
             <a
               routerLink=""
               class="block py-2 px-2 mr-2 md:inline-block md:mt-0 text-teal-200 hover:text-white hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl rounded"
@@ -16,12 +16,25 @@
             >Home
             </a>
             <a
-              routerLink="about"
+              routerLink="dashboard"
               class="block py-2 px-2 mr-2 md:inline-block md:mt-0 text-teal-200 hover:text-white hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl rounded"
               routerLinkActive="bg-white/30 dark:bg-black/30 backdrop-blur-xl"
-            >About
+            >Dashboard
             </a>
           </div>
+        </div>
+        <!-- menu-1 end -->
+        <!-- menu-2 -->
+        <div
+          id="menu-2"
+          class="flex-auto flex-wrap px-4 md:flex md:items-center justify-end md:w-auto"
+        >
+          <a
+            routerLink="about"
+            class="block py-2 px-2 mr-2 md:inline-block md:mt-0 text-teal-200 text-right hover:text-white hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl rounded"
+            routerLinkActive="bg-white/30 dark:bg-black/30 backdrop-blur-xl"
+          >About
+          </a>
         </div>
         <!-- end -->
       </section>

@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {NgForOf} from "@angular/common";
-import {CarDetailsComponent} from "../car-details/car-details.component";
+import {CarCardComponent} from "../car-card/car-card.component";
 import {CarService} from "../../../services/car.service";
 import {Car} from "../../../models/car";
 
@@ -11,7 +11,7 @@ import {Car} from "../../../models/car";
   imports: [
     FormsModule,
     NgForOf,
-    CarDetailsComponent
+    CarCardComponent
   ],
   templateUrl: './add-car.component.html',
   styleUrl: './add-car.component.scss'

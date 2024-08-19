@@ -1,21 +1,25 @@
 import { Component } from '@angular/core';
 import {AddCarComponent} from "../../components/other-components/add-car/add-car.component";
-import {RouterOutlet} from "@angular/router";
 import {AllCarsComponent} from "../../components/other-components/all-cars/all-cars.component";
 import {CarCardComponent} from "../../components/other-components/car-card/car-card.component";
+import {Car} from "../../models/car";
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-dashboard',
   standalone: true,
   imports: [
     AddCarComponent,
-    RouterOutlet,
     AllCarsComponent,
     CarCardComponent
   ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.scss'
 })
-export class HomeComponent {
+export class DashboardComponent {
 
+  selectedCar!: Car;
+
+  onCarSelect(car: Car) : void{
+    this.selectedCar = car;
+  }
 }

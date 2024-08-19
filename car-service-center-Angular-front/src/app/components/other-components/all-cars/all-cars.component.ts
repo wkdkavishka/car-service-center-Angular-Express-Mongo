@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {NgForOf} from "@angular/common";
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {NgForOf, NgStyle} from "@angular/common";
 import {CarService} from "../../../services/car.service";
 import {Car} from "../../../models/car";
 
@@ -7,15 +7,20 @@ import {Car} from "../../../models/car";
   selector: 'app-all-cars',
   standalone: true,
   imports: [
-    NgForOf
+    NgForOf,
+    NgStyle
   ],
   templateUrl: './all-cars.component.html',
   styleUrl: './all-cars.component.scss'
 })
 export class AllCarsComponent implements OnInit {
 
+  @Output()
+  returnCar: EventEmitter<Car> = new EventEmitter<Car>();
+
   cars: Car[] = [];
   // todo -> transform cars<array> to hashMaps
+
   // hashMapCars = new Map<string, Car>();
 
   constructor(
@@ -46,6 +51,10 @@ export class AllCarsComponent implements OnInit {
     this.carService.deleteACar(car).then(
       (r) => this.findAndDelete(r, this.cars)
     ).catch(err => console.log(err));
+  }
+
+  selectCar(car: Car): void {
+    this.returnCar.emit(car); // Emit the selected car
   }
 
 }

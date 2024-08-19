@@ -1,25 +1,28 @@
 import {Component, Input} from '@angular/core';
 import {CarService} from "../../../services/car.service";
 import {Car} from "../../../models/car";
+import {NgIf} from "@angular/common";
 
 @Component({
-  selector: 'app-car-details',
+  selector: 'app-car-card',
   standalone: true,
-  imports: [],
-  templateUrl: './car-details.component.html',
-  styleUrl: './car-details.component.scss'
+  imports: [
+    NgIf
+  ],
+  templateUrl: './car-card.component.html',
+  styleUrl: './car-card.component.scss'
 })
-export class CarDetailsComponent {
+export class CarCardComponent {
+
+  @Input()
+  givenCar!: Car; // The selected car from all-cars component
 
   constructor(private carService: CarService) {
 
   }
 
-  @Input()
-  car!: Car;
-
   onDelete() {
-    this.carService.deleteACar(this.car);
+    this.carService.deleteACar(this.givenCar).then( );
   }
 
   // @Output()
