@@ -2,7 +2,7 @@ import mongoose, { Schema, Document, Model } from 'mongoose';
 
 // Define the TypeScript interface for the Car document
 interface Car extends Document {
-    car_brand: string;
+    owner: string;
     car_model: string;
     car_numberplate: string;
 }
@@ -10,7 +10,7 @@ interface Car extends Document {
 // Define the schema for the Car model
 const CarSchema: Schema<Car> = new Schema(
     {
-        car_brand: { type: String, required: true },
+        owner: { type: String, required: true },
         car_model: { type: String, required: true },
         car_numberplate: { type: String, required: true }
     },

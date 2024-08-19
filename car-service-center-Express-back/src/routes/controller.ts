@@ -74,9 +74,9 @@ export const updateACar = async (req: Request, res: Response): Promise<Response>
 
 // Add a new car
 export const addACar = async (req: Request, res: Response): Promise<Response> => {
-    const { car_brand, car_model, car_numberplate } = req.body; // deconstruction
+    const { owner, car_model, car_numberplate } = req.body; // deconstruction
     try {
-        const car = await Car.create({ car_brand, car_model, car_numberplate });
+        const car = await Car.create({ owner, car_model, car_numberplate });
         console.log(car); // testing ########
         return res.status(200).json(car);
     } catch (e) {

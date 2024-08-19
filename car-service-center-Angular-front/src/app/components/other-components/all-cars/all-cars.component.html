@@ -25,7 +25,7 @@
       >#
       </div>
     </th>
-    <th class="px-6 py-3" scope="col">Brand</th>
+    <th class="px-6 py-3" scope="col">Owner</th>
     <th class="px-6 py-3" scope="col">Model</th>
     <th class="px-6 py-3" scope="col">N-Plate</th>
 <!--    <th class="px-2 py-3" scope="col">Del</th>-->
@@ -37,7 +37,7 @@
       (click)="selectCar(car)"
       [ngStyle]="{ 'cursor': 'pointer', 'user-select': 'none' }">
     <td class="px-2 py-1">{{ i + 1 }}</td>
-    <td class="px-2 py-1">{{ car.car_brand }}</td>
+    <td class="px-2 py-1">{{ car.owner }}</td>
     <td class="px-2 py-1">{{ car.car_model }}</td>
     <td class="px-2 py-1">{{ car.car_numberplate }}</td>
 <!--    <td-->

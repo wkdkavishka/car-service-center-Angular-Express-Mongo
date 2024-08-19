@@ -6,9 +6,9 @@
     <select id="tabs"
             class="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             (change)="selectTabMobile($event)">
-      <option value="stats">Statistics</option>
-      <option value="about">Services</option>
-      <option value="faq">FAQ</option>
+      <option value="stats">Details</option>
+      <option value="Progress">Jobs</option>
+      <option value="del">Delete</option>
     </select>
   </div>
 
@@ -19,33 +19,43 @@
     <li class="w-full">
       <button (click)="selectTab('stats')" [ngClass]="{ 'bg-gray-100': selectedTab === 'stats' }"
               class="inline-block w-full p-4  hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
-        Statistics
+        Details
       </button>
     </li>
     <li class="w-full">
-      <button (click)="selectTab('about')" [ngClass]="{ 'bg-gray-100': selectedTab === 'about' }"
+      <button (click)="selectTab('Progress')" [ngClass]="{ 'bg-gray-100': selectedTab === 'Progress' }"
               class="inline-block w-full p-4 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
-        Services
+        Progress
       </button>
     </li>
     <li class="w-full">
-      <button (click)="selectTab('faq')" [ngClass]="{ 'bg-gray-100': selectedTab === 'faq' }"
+      <button (click)="selectTab('del')" [ngClass]="{ 'bg-gray-100': selectedTab === 'faq' }"
               class="inline-block w-full p-4  hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
-        FAQ
+        Delete
       </button>
     </li>
   </ul>
 
   <!-- Tab Content -->
-  <div class="border-t border-gray-200 dark:border-gray-600">
+  <div class="border-t border-gray-200 dark:border-gray-600 dark:text-slate-100">
     <div *ngIf="selectedTab === 'stats'" class="p-4 bg-white  dark:bg-gray-800">
-       Your Statistics Content
+      <div *ngIf="!givenCar">
+        Select A Car
+      </div>
+      <h1>id: {{ givenCar._id }}</h1>
+      <h3>Brand: {{ givenCar.owner }}</h3>
+      <h3>Model: {{ givenCar.car_model }}</h3>
+      <h3>N-Plate: {{ givenCar.car_numberplate }}</h3>
     </div>
-    <div *ngIf="selectedTab === 'about'" class="p-4 bg-white  dark:bg-gray-800">
-       Your Services Content
+    <div *ngIf="selectedTab === 'Progress'" class="p-4 bg-white  dark:bg-gray-800">
+      <div *ngIf="!givenCar">
+      Your Services Progress
+      </div>
     </div>
-    <div *ngIf="selectedTab === 'faq'" class="p-4 bg-white  dark:bg-gray-800">
-       Your FAQ Content
+    <div *ngIf="selectedTab === 'del'" class="p-4 bg-white  dark:bg-gray-800">
+      <div *ngIf="!givenCar" class="text-red-500">
+      Delete the selected car
+      </div>
     </div>
   </div>
 </section>

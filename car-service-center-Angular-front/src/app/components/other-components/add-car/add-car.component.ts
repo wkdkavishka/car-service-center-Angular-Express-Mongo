@@ -22,7 +22,7 @@ export class AddCarComponent implements OnInit {
   @ViewChild('carInput') carInput!: ElementRef;
 
   // for two-way binding
-  car_brand: string = '';
+  owner: string = '';
   car_model: string = '';
   car_numberplate: string = '';
 
@@ -47,7 +47,8 @@ export class AddCarComponent implements OnInit {
   onSubmit() {
     // Create a newCar object
     const newCar: Car = {
-      car_brand: this.car_brand,
+
+      owner: this.owner,
       car_model: this.car_model,
       car_numberplate: this.car_numberplate,
     };
@@ -57,7 +58,7 @@ export class AddCarComponent implements OnInit {
     this.carService.addACar(newCar);
 
     // clear fields after submit
-    this.car_brand = '';
+    this.owner = '';
     this.car_model = '';
     this.car_numberplate = '';
     // Set focus to the input element
