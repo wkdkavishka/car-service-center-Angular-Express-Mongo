@@ -11,7 +11,7 @@ const router = express.Router();
 router.get('/', getAllCars); // READ all cars
 
 // View a single car by ID
-router.get('/get-car/:id', getACar); // READ a specific car
+router.get('/:id', getACar); // READ a specific car
 
 // Add a new car
 router.post('/', addACar); // CREATE a car

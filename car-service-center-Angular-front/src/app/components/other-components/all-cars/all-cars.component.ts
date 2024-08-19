@@ -21,15 +21,29 @@ export class AllCarsComponent implements OnInit {
   ) {
   }
 
+  private findAndDelete(car: Car, cars: Car[]) {
+    for (let i = 0; i < cars.length; i++) {
+      if (car._id == cars[i]._id) {
+        cars.splice(i, 1);
+        break;
+      }
+    }
+  }
+
   ngOnInit(): void {
-    this.carService.AllCars().then((r) => this.cars = r);
+    this.carService.AllCars().then((r) => this.cars = r)
+      .catch((err) => console.log(err));
   }
 
   refresh() {
-    this.carService.refreshCarList().then((r) => this.cars = r);
+    this.carService.refreshCarList().then((r) => this.cars = r)
+      .catch((err) => console.log(err));
   }
 
   onDelete(car: Car) {
-    this.carService.deleteACar(car);
+    this.carService.deleteACar(car).then(
+      (r) => this.findAndDelete(r, this.cars)
+    ).catch(err => console.log(err));
   }
+
 }

@@ -32,6 +32,18 @@ export class CarService {
     }
   }
 
+  // Refresh cars and wait until the data is fetched
+  async refreshCarList(): Promise<Car[]> {
+    try {
+      // Fetch the cars and wait for the data to be resolved
+      this.cars = await firstValueFrom(this.apiService.fetchAllCars());
+      return this.cars;
+    } catch (error) {
+      console.error('Error refreshCarList :', error);
+      throw error;
+    }
+  }
+
   async AllCars(): Promise<Car[]> {
     if (this.fetched) {
       return this.cars;
@@ -42,18 +54,6 @@ export class CarService {
         console.error('Error fetching cars:', error);
         throw error;
       }
-    }
-  }
-
-  // Refresh cars and wait until the data is fetched
-  async refreshCarList(): Promise<Car[]> {
-    try {
-      // Fetch the cars and wait for the data to be resolved
-      this.cars = await firstValueFrom(this.apiService.fetchAllCars());
-      return this.cars;
-    } catch (error) {
-      console.error('Error refreshCarList :', error);
-      throw error;
     }
   }
 
@@ -71,8 +71,11 @@ export class CarService {
   }
 
 
-  deleteACar(car: Car): void {
-    this.cars.splice(this.cars.indexOf(car), 1);
+  async deleteACar(car: Car): Promise<Car> {
+    // this.cars.splice(this.cars.indexOf(car), 1);
+    let d_car = await firstValueFrom(this.apiService.deleteACar(car));
+    console.log(d_car);
+    return d_car;
   }
 
 }

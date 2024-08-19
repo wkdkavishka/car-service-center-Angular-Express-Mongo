@@ -25,9 +25,21 @@ export class ApiService {
     return this.http.get<Car[]>(url);
   }
 
+  // Method to GET All the cars
+  fetchACar(car: Car): Observable<Car> {
+    const url = `${this.baseUrl}/car_service/${car._id}`;
+    return this.http.get<Car>(url);
+  }
+
   // Method to ADD A Car
   postACar(car: Car): Observable<Car> {
-    const url = `${this.baseUrl}/car_service`; // Your API endpoint
+    const url = `${this.baseUrl}/car_service/`; // Your API endpoint
     return this.http.post<Car>(url, car);
+  }
+
+  // Method to Delete A Car
+  deleteACar(car: Car): Observable<Car> {
+    const url = `${this.baseUrl}/car_service/${car._id}`; // Your API endpoint
+    return this.http.delete<Car>(url);
   }
 }
