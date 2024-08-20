@@ -55,6 +55,8 @@ export const deleteACar = async (req: Request, res: Response): Promise<Response>
 // Update a car
 export const updateACar = async (req: Request, res: Response): Promise<Response> => {
     try {
+        console.log("response\n", req.body);
+        console.log("\nresponse params", req.params,"\n");
         const { id } = req.params;
         // Check if the ID is valid
         if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -74,9 +76,9 @@ export const updateACar = async (req: Request, res: Response): Promise<Response>
 
 // Add a new car
 export const addACar = async (req: Request, res: Response): Promise<Response> => {
-    const { owner, car_model, car_numberplate } = req.body; // deconstruction
+    const { owner, car_model, car_numberplate, job_status, job_progress } = req.body; // deconstruction
     try {
-        const car = await Car.create({ owner, car_model, car_numberplate });
+        const car = await Car.create({ owner, car_model, car_numberplate, job_status, job_progress });
         console.log(car); // testing ########
         return res.status(200).json(car);
     } catch (e) {

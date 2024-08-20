@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgForOf, NgStyle} from "@angular/common";
 import {CarService} from "../../../services/car.service";
-import {Car} from "../../../models/car";
+import {Car} from "../../../data-objects/models/car";
 
 @Component({
   selector: 'app-all-cars',
@@ -47,11 +47,11 @@ export class AllCarsComponent implements OnInit {
       .catch((err) => console.log(err));
   }
 
-  onDelete(car: Car) {
-    this.carService.deleteACar(car).then(
-      (r) => this.findAndDelete(r, this.cars)
-    ).catch(err => console.log(err));
-  }
+  // onDelete(car: Car) {
+  //   this.carService.deleteACar(car).then(
+  //     (r) => this.findAndDelete(r, this.cars)
+  //   ).catch(err => console.log(err));
+  // }
 
   selectCar(car: Car): void {
     this.returnCar.emit(car); // Emit the selected car

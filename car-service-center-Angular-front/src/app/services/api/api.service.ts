@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Car} from "../../models/car";
+import {Car} from "../../data-objects/models/car";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
@@ -42,4 +42,29 @@ export class ApiService {
     const url = `${this.baseUrl}${car._id}`; // Your API endpoint
     return this.http.delete<Car>(url);
   }
+
+  // Method to Update A Car
+  patchACar(car: Car): Observable<Car> {
+    const url = `${this.baseUrl}${car._id}`; // Your API endpoint
+
+    // const newCar: {
+    //   owner: string,
+    //   car_model: string,
+    //   car_numberplate: string,
+    //   job_status: string | undefined,
+    //   job_progress: string | undefined,
+    // } = {
+    //   owner: car.owner,
+    //   car_model: car.car_model,
+    //   car_numberplate: car.car_numberplate,
+    //   job_status: car.job_status,
+    //   // job_progress: parseInt(this.job_progress),
+    //   job_progress: car.job_progress,
+    // };
+
+    console.log(url);
+
+    return this.http.patch<Car>(url, car);
+  }
+
 }

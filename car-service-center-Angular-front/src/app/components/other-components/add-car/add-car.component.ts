@@ -3,7 +3,7 @@ import {FormsModule} from "@angular/forms";
 import {NgForOf} from "@angular/common";
 import {CarCardComponent} from "../car-card/car-card.component";
 import {CarService} from "../../../services/car.service";
-import {Car} from "../../../models/car";
+import {Car} from "../../../data-objects/models/car";
 
 @Component({
   selector: 'app-add-car',
@@ -47,10 +47,11 @@ export class AddCarComponent implements OnInit {
   onSubmit() {
     // Create a newCar object
     const newCar: Car = {
-
       owner: this.owner,
       car_model: this.car_model,
       car_numberplate: this.car_numberplate,
+      job_status: 'open', // by default
+      job_progress: '0' // by default
     };
 
     // this.cars seems to be sync with carService's cars list
@@ -64,10 +65,6 @@ export class AddCarComponent implements OnInit {
     // Set focus to the input element
     this.carInput.nativeElement.focus();
   }
-
-  // deleteCar(index: number) {
-  //   this.cars.splice(index, 1);
-  // }
 
   onDelete(car: Car): void {
     this.carService.deleteACar(car)

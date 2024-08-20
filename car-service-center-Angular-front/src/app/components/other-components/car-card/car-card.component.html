@@ -1,6 +1,12 @@
 <!-- car details card -->
 <!-- *ngIf="givenCar" -->
 <section>
+  <div class="flex justify-center items-center">
+    <!-- title -->
+    <small class="ms-2 py-3 text-4xl font-semibold text-gray-500 dark:text-gray-400 text-center">
+      All Cars
+    </small>
+  </div>
   <div class="sm:hidden">
     <label for="tabs" class="sr-only">Select tab</label>
     <select id="tabs"
@@ -43,18 +49,76 @@
         Select A Car
       </div>
       <h1>id: {{ givenCar._id }}</h1>
-      <h3>Brand: {{ givenCar.owner }}</h3>
+      <h3>Owner: {{ givenCar.owner }}</h3>
       <h3>Model: {{ givenCar.car_model }}</h3>
       <h3>N-Plate: {{ givenCar.car_numberplate }}</h3>
     </div>
     <div *ngIf="selectedTab === 'Progress'" class="p-4 bg-white  dark:bg-gray-800">
+      <div *ngIf="givenCar">
+
+        Your Services Progress
+        <form (ngSubmit)="onUpdate()" class="max-w-md mx-auto py-1">
+          <div class="grid md:grid-cols-2 md:gap-6">
+            <div class="relative z-0 w-full mb-5 group">
+              <input #jobStatus [(ngModel)]="job_status"
+                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                     id="car_brand"
+                     name="car_brand"
+                     placeholder="{{givenCar.job_status}}"
+                     required
+                     type="text"/>
+              <label
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                for="car_brand">
+                Job Status open | close
+              </label>
+            </div>
+            <div class="relative z-0 w-full mb-5 group">
+              <input [(ngModel)]="job_progress"
+                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                     id="car_model"
+                     name="car_model"
+                     placeholder="{{givenCar.job_progress}}"
+                     required
+                     type="text"/>
+              <label
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                for="car_model">
+                Progress 0 - 100
+              </label>
+            </div>
+          </div>
+
+          <button
+            class="text-white bg-yellow-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-yellow-600 dark:hover:bg-green-700 dark:focus:ring-blue-800"
+            type="submit"
+          >
+            Update
+          </button>
+        </form>
+
+      </div>
       <div *ngIf="!givenCar">
-      Your Services Progress
+        Select A Car
       </div>
     </div>
     <div *ngIf="selectedTab === 'del'" class="p-4 bg-white  dark:bg-gray-800">
-      <div *ngIf="!givenCar" class="text-red-500">
-      Delete the selected car
+      <div *ngIf="givenCar" class="text-red-500">
+        Delete the selected car
+        <h1>id: {{ givenCar._id }}</h1>
+        <h3>Owner: {{ givenCar.owner }}</h3>
+        <h3>Model: {{ givenCar.car_model }}</h3>
+        <h3>N-Plate: {{ givenCar.car_numberplate }}</h3>
+        <div
+          type="button"
+          class="text-sm px-3 py-2 leading-none border rounded text-red-600 hover:border-transparent hover:text-slate-100 hover:bg-red-600 my-1 inline-flex"
+          (click)="onDelete(givenCar); $event.stopPropagation();"
+          [ngStyle]="{ 'cursor': 'pointer' }">
+          Delete
+        </div>
+      </div>
+      <div *ngIf="!givenCar">
+        Select A Car
       </div>
     </div>
   </div>

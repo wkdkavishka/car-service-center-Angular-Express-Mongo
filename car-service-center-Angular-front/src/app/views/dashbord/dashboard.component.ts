@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {AddCarComponent} from "../../components/other-components/add-car/add-car.component";
 import {AllCarsComponent} from "../../components/other-components/all-cars/all-cars.component";
 import {CarCardComponent} from "../../components/other-components/car-card/car-card.component";
-import {Car} from "../../models/car";
+import {Car} from "../../data-objects/models/car";
 
 @Component({
   selector: 'app-dashboard',

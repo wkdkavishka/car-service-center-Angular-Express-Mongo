@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Car} from '../models/car';
+import {Car} from '../data-objects/models/car';
 import {firstValueFrom} from "rxjs";
 import {ApiService} from "./api/api.service";
 
@@ -70,12 +70,38 @@ export class CarService {
     }
   }
 
+  async updateACar(car: Car): Promise<Car> {
+    try {
+      // Update and return the car
+      const response = await firstValueFrom(this.apiService.patchACar(car));
+      console.log('Car Updated successfully:', response);
+      this.cars.push(response); // updating the local car list
+      return response;
+    } catch (error) {
+      console.error('Error Adding car:', error);
+      throw error;
+    }
+  }
+
 
   async deleteACar(car: Car): Promise<Car> {
-    // this.cars.splice(this.cars.indexOf(car), 1);
-    let d_car = await firstValueFrom(this.apiService.deleteACar(car));
-    console.log(d_car);
-    return d_car;
+    try {
+      let d_car = await firstValueFrom(this.apiService.deleteACar(car));
+      console.log('Car Deleted successfully:', d_car);
+      return d_car;
+    } catch (error) {
+      console.error('Error deleting car:', error);
+      throw error;
+    }
+  }
+
+  findAndDelete(car: Car) {
+    for (let i = 0; i < this.cars.length; i++) {
+      if (car._id == this.cars[i]._id) {
+        this.cars.splice(i, 1);
+        break;
+      }
+    }
   }
 
 }
