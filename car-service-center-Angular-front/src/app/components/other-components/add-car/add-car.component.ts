@@ -47,6 +47,7 @@ export class AddCarComponent implements OnInit {
   onSubmit() {
     // Create a newCar object
     const newCar: Car = {
+      _id: 'fake id',
       owner: this.owner,
       car_model: this.car_model,
       car_numberplate: this.car_numberplate,

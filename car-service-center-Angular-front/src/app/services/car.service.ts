@@ -76,7 +76,8 @@ export class CarService {
       const response = await firstValueFrom(this.apiService.patchACar(car));
       console.log('Car Updated successfully:', response);
       // todo -> check if the car object get replaced or not
-      this.cars.push(response); // updating the local car list
+      // this.cars.push(response); // updating the local car list
+      this.findAndReplaceCar(response); // updating the local car list
       return response;
     } catch (error) {
       console.error('Error Adding car:', error);
@@ -106,4 +107,12 @@ export class CarService {
     }
   }
 
+  private findAndReplaceCar(car: Car) {
+    for (let i = 0; i < this.cars.length; i++) {
+      if (car._id == this.cars[i]._id) {
+        this.cars[i] = car;
+        break;
+      }
+    }
+  }
 }

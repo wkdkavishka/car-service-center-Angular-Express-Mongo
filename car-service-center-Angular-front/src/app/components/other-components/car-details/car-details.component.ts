@@ -16,7 +16,7 @@ import {FormsModule} from "@angular/forms";
   templateUrl: './car-details.component.html',
   styleUrl: './car-details.component.scss'
 })
-export class CarDetailsComponent {
+export class CarDetailsComponent implements OnInit {
 
   // @ViewChild('jobStatus') carInput!: ElementRef;
 
@@ -34,20 +34,19 @@ export class CarDetailsComponent {
   ) {
   }
 
-  // ngOnInit(): void {
-  //   // Check if givenCar is undefined or null and set default values
-  //   if (!this.givenCar) {
-  //     // this.carGiven = false;
-  //     // this.givenCar = {
-  //     //   owner: 'Default Owner',
-  //     //   car_model: 'Default Model',
-  //     //   car_numberplate: 'XXX-0000',
-  //     //   _id: '-1',
-  //     //   job_status: false, // Default to false (e.g., closed)
-  //     //   job_progress: 0 // Default to 0 (e.g., no progress)
-  //     // };
-  //   }
-  // }
+  ngOnInit(): void {
+    // Check if givenCar is undefined or null and set default values
+    if (!this.givenCar) {
+      this.givenCar = {
+        owner: 'Default Owner',
+        car_model: 'Default Model',
+        car_numberplate: 'XXX-0000',
+        _id: '-1',
+        job_status: false, // Default to false (e.g., closed)
+        job_progress: 0 // Default to 0 (e.g., no progress)
+      };
+    }
+  }
 
   // ngOnChanges(changes: SimpleChanges): void {
   //   if (changes['givenCar'] && this.givenCar) {

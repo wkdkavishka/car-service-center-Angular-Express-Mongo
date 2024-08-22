@@ -33,8 +33,24 @@ export class ApiService {
 
   // Method to ADD A Car
   postACar(car: Car): Observable<Car> {
+    // todo -> use dto pattern // dto.service
+    // casting
+    const newCar: {
+      owner: string,
+      car_model: string,
+      car_numberplate: string,
+      job_status: boolean,
+      job_progress: number,
+    } = {
+      owner: car.owner,
+      car_model: car.car_model,
+      car_numberplate: car.car_numberplate,
+      job_status: car.job_status,
+      job_progress: car.job_progress,
+    };
+
     const url = `${this.baseUrl}`; // Your API endpoint
-    return this.http.post<Car>(url, car);
+    return this.http.post<Car>(url, newCar);
   }
 
   // Method to Delete A Car
@@ -45,7 +61,6 @@ export class ApiService {
 
   // Method to Update A Car
   patchACar(car: Car): Observable<Car> {
-    const url = `${this.baseUrl}${car._id}`; // Your API endpoint
     // todo -> use dto pattern // dto.service
     // casting
     const newCar: {
@@ -63,6 +78,7 @@ export class ApiService {
       job_progress: car.job_progress,
     };
 
+    const url = `${this.baseUrl}${car._id}`; // Your API endpoint
     return this.http.patch<Car>(url, newCar);
   }
 

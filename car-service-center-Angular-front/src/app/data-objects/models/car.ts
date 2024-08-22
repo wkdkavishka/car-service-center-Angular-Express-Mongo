@@ -5,5 +5,5 @@ export interface Car {
   car_numberplate: string;
   job_status: boolean;
   job_progress: number;
-  _id?: string;
+  _id: string;
 }
