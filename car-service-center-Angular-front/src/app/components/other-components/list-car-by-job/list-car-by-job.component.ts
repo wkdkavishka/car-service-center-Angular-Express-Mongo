@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgForOf, NgIf, NgStyle} from "@angular/common";
 import {Car} from "../../../data-objects/models/car";
 import {FormBuilder, FormsModule} from "@angular/forms";
@@ -18,12 +18,14 @@ import {CarService} from "../../../services/car.service";
 })
 export class ListCarByJobComponent implements OnInit {
 
-  // for data binding
-  job_progress: number = -1 //
-  isProgressDropdownOpen = false; //
+  @Output()
+  returnCar: EventEmitter<Car> = new EventEmitter<Car>();
 
   cars: Car[] = [];
   t_cars: Car[] = []; // to temporary hold
+  // for data binding
+  job_progress: number = -1 //
+  isProgressDropdownOpen = false; //
 
   constructor(
     private carService: CarService,
@@ -47,7 +49,7 @@ export class ListCarByJobComponent implements OnInit {
   }
 
   onFind(): void {
-    this.t_cars =[];
+    this.t_cars = [];
     this.cars.forEach((car: Car) => {
       if (this.job_progress === car.job_progress) {
         this.t_cars.push(car);
@@ -59,7 +61,7 @@ export class ListCarByJobComponent implements OnInit {
     this.onFind();
   }
 
-  selectCar(car: Car) {
-
+  selectReturnCar(car: Car): void {
+    this.returnCar.emit(car); // Emit the selected car
   }
 }

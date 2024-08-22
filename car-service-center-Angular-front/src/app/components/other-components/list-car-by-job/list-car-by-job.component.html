@@ -1,67 +1,84 @@
 <section>
-  <!--    drop down button    -->
-  <div (click)="toggleDropdownProgress()"
-       class="text-sm px-3 py-2 leading-none border rounded text-yellow-500 hover:border-transparent hover:text-slate-100 hover:bg-yellow-500 my-1 inline-flex"
-       type="button">
-    Select Stage
-    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-         viewBox="0 0 10 6">
-      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="m1 1 4 4 4-4"/>
-    </svg>
+  <div class="flex relative justify-between flex-wrap">
+    <!--    drop down button    -->
+    <div (click)="toggleDropdownProgress()"
+         class="relative text-sm px-3 py-2 leading-none border rounded text-blue-500 hover:border-transparent hover:text-slate-100 hover:bg-blue-500 my-1 inline-flex"
+         type="button">
+      Select Stage
+      <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+           viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="m1 1 4 4 4-4"/>
+      </svg>
+    </div>
+    <!--    drop down button  end  -->
+    <!--    drop down button    -->
+    <div (click)="toggleDropdownProgress()"
+         class="relative text-sm px-3 py-2 leading-none border rounded text-blue-500 hover:border-transparent hover:text-slate-100 hover:bg-blue-500 my-1 inline-flex"
+         type="button">
+      Select State
+      <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+           viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="m1 1 4 4 4-4"/>
+      </svg>
+    </div>
+    <!--    drop down button  end  -->
+    <!-- update button-->
+    <div
+      type="button"
+      class="relative text-sm px-3 py-2 leading-none border rounded text-green-500 hover:border-transparent hover:text-slate-100 hover:bg-green-500 my-1 inline-flex"
+      (click)="onFind()"
+      [ngStyle]="{ 'cursor': 'pointer' }">
+      Find
+    </div>
+    <!-- end update button-->
   </div>
-  <!--    drop down button  end  -->
+  <!-- ########################### -->
   <!-- Dropdown menu -->
   <div *ngIf="isProgressDropdownOpen"
-       class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+       class="row-start-1 col-start-1 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+    <ul
+      class="text-white absolute z-10 mt-2 w-24 rounded backdrop-blur-xl bg-green-500/50 text-center"
+    >
       <li>
         <div
           (click)="setJobProgress(1)"
-          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">1
+          class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">1
         </div>
       </li>
       <li>
         <div
           (click)="setJobProgress(2)"
-          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">2
+          class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">2
         </div>
       </li>
       <li>
         <div
           (click)="setJobProgress(3)"
-          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">3
+          class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">3
         </div>
       </li>
       <li>
         <div
           (click)="setJobProgress(4)"
-          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">4
+          class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">4
         </div>
       </li>
       <li>
         <div
           (click)="setJobProgress(5)"
-          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">5
+          class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">5
         </div>
       </li>
     </ul>
   </div>
-  <!-- drop down end -->
-  <!-- update button-->
-  <div
-    type="button"
-    class="text-sm px-3 py-2 leading-none border rounded text-yellow-500 hover:border-transparent hover:text-slate-100 hover:bg-yellow-500 my-1 inline-flex"
-    (click)="onFind()"
-    [ngStyle]="{ 'cursor': 'pointer' }">
-    Update
-  </div>
-  <!-- end update button-->
+  <!-- drop down menu end -->
 </section>
 
 
 <!-- table - all cars -->
-<table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+<table class="relative w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
   <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
   <tr>
     <th class="px-1 py-2" scope="col">
@@ -81,7 +98,7 @@
   <tbody>
   <tr *ngFor="let car of t_cars; let i = index"
       class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-      (click)="selectCar(car)"
+      (click)="selectReturnCar(car)"
       [ngStyle]="{ 'cursor': 'pointer', 'user-select': 'none' }">
     <td class="px-2 py-1">{{ i + 1 }}</td>
     <td class="px-2 py-1">{{ car.car_numberplate }}</td>
