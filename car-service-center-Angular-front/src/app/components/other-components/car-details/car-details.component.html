@@ -5,7 +5,7 @@
     <div class="flex justify-center items-center">
       <!-- title -->
       <small class="ms-2 py-3 text-4xl font-semibold text-gray-500 dark:text-gray-400 text-center">
-        All Cars
+        Car Information
       </small>
     </div>
     <div class="sm:hidden">
@@ -71,7 +71,7 @@
               <button (click)="toggleDropdownStatus()"
                       class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                       type="button">
-                Status : {{ givenCar.job_status ? 'Open' : 'Close' }}
+                Status : {{ givenCar.job_status }}
                 <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                      viewBox="0 0 10 6">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -96,11 +96,6 @@
                     </div>
                   </li>
                 </ul>
-                <div class="py-2">
-                  <a href="#"
-                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Separated
-                    link</a>
-                </div>
               </div>
               <!-- drop down end -->
             </section>
@@ -165,7 +160,7 @@
             <div
               type="button"
               class="text-sm px-3 py-2 leading-none border rounded text-yellow-500 hover:border-transparent hover:text-slate-100 hover:bg-red-600 my-1 inline-flex"
-              (click)="onUpdate(); $event.stopPropagation();"
+              (click)="onUpdate()"
               [ngStyle]="{ 'cursor': 'pointer' }">
               Update
             </div>

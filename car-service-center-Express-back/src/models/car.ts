@@ -5,7 +5,7 @@ interface Car extends Document {
     owner: string;
     car_model: string;
     car_numberplate: string;
-    job_status?: string;
+    job_status?: boolean;
     job_progress?: number;
 }
 
