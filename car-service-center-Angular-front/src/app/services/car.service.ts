@@ -75,6 +75,7 @@ export class CarService {
       // Update and return the car
       const response = await firstValueFrom(this.apiService.patchACar(car));
       console.log('Car Updated successfully:', response);
+      // todo -> check if the car object get replaced or not
       this.cars.push(response); // updating the local car list
       return response;
     } catch (error) {
@@ -84,18 +85,19 @@ export class CarService {
   }
 
 
-  async deleteACar(car: Car): Promise<Car> {
+  async deleteACar(car: Car): Promise<void> {
     try {
       let d_car = await firstValueFrom(this.apiService.deleteACar(car));
+      this.findAndDeleteCar(d_car);
       console.log('Car Deleted successfully:', d_car);
-      return d_car;
+      // return d_car;
     } catch (error) {
       console.error('Error deleting car:', error);
       throw error;
     }
   }
 
-  findAndDelete(car: Car) {
+  findAndDeleteCar(car: Car) {
     for (let i = 0; i < this.cars.length; i++) {
       if (car._id == this.cars[i]._id) {
         this.cars.splice(i, 1);

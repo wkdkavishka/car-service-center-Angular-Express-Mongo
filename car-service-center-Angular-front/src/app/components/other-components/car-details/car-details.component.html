@@ -1,0 +1,206 @@
+<!-- car details card -->
+<!-- *ngIf="givenCar" -->
+<section>
+  <section>
+    <div class="flex justify-center items-center">
+      <!-- title -->
+      <small class="ms-2 py-3 text-4xl font-semibold text-gray-500 dark:text-gray-400 text-center">
+        All Cars
+      </small>
+    </div>
+    <div class="sm:hidden">
+      <label for="tabs" class="sr-only">Select tab</label>
+      <select id="tabs"
+              class="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              (change)="selectTabMobile($event)">
+        <option value="stats">Details</option>
+        <option value="Progress">Jobs</option>
+        <option value="del">Delete</option>
+      </select>
+    </div>
+    <!-- Tab Buttons for larger screens -->
+    <ul
+      class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200  sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse"
+      role="tablist">
+      <li class="w-full">
+        <button (click)="selectTab('stats')" [ngClass]="{ 'bg-gray-100': selectedTab === 'stats' }"
+                class="inline-block w-full p-4  hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
+          Details
+        </button>
+      </li>
+      <li class="w-full">
+        <button (click)="selectTab('Progress')" [ngClass]="{ 'bg-gray-100': selectedTab === 'Progress' }"
+                class="inline-block w-full p-4 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
+          Progress
+        </button>
+      </li>
+      <li class="w-full">
+        <button (click)="selectTab('del')" [ngClass]="{ 'bg-gray-100': selectedTab === 'faq' }"
+                class="inline-block w-full p-4  hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">
+          Delete
+        </button>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Tab Content -->
+  <section>
+    <div class="border-t border-gray-200 dark:border-gray-600 dark:text-slate-100">
+      <!--  Details  -->
+      <section>
+        <div *ngIf="selectedTab === 'stats'" class="p-4 bg-white  dark:bg-gray-800">
+          <div *ngIf="!givenCar">
+            Select A Car
+          </div>
+          <h1>id: {{ givenCar._id }}</h1>
+          <h3>Owner: {{ givenCar.owner }}</h3>
+          <h3>Model: {{ givenCar.car_model }}</h3>
+          <h3>N-Plate: {{ givenCar.car_numberplate }}</h3>
+          <h3>Job Status: {{ givenCar.job_status }}</h3>
+          <h3>Job Progress: {{ givenCar.job_progress }}</h3>
+        </div>
+      </section>
+      <!--  progress  -->
+      <section>
+        <div *ngIf="selectedTab === 'Progress'" class="p-4 bg-white  dark:bg-gray-800">
+          <!--  if car is given -->
+          <div *ngIf="givenCar">
+            drop down Status
+            <section>
+              <!--    drop down button    -->
+              <button (click)="toggleDropdownStatus()"
+                      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      type="button">
+                Status : {{ givenCar.job_status ? 'Open' : 'Close' }}
+                <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 4 4 4-4"/>
+                </svg>
+              </button>
+              <!--    drop down button  end  -->
+              <!-- Dropdown menu -->
+              <div *ngIf="isStatusDropdownOpen"
+                   class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+                  <li>
+                    <div
+                      (click)="setJobStatus(true)"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Open
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      (click)="setJobStatus(false)"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Close
+                    </div>
+                  </li>
+                </ul>
+                <div class="py-2">
+                  <a href="#"
+                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Separated
+                    link</a>
+                </div>
+              </div>
+              <!-- drop down end -->
+            </section>
+            drop down Progress
+            <section>
+              <!--    drop down button    -->
+              <button (click)="toggleDropdownProgress()"
+                      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      type="button">
+                Progress : Stage - {{ givenCar.job_progress }}
+                <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 4 4 4-4"/>
+                </svg>
+              </button>
+              <!--    drop down button  end  -->
+              <!-- Dropdown menu -->
+              <div *ngIf="isProgressDropdownOpen"
+                   class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+                  <li>
+                    <div
+                      (click)="setJobProgress(1)"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">1
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      (click)="setJobProgress(2)"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">2
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      (click)="setJobProgress(3)"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">3
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      (click)="setJobProgress(4)"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">4
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      (click)="setJobProgress(5)"
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">5
+                    </div>
+                  </li>
+                </ul>
+                <div class="py-2">
+                  <a href="#"
+                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Separated
+                    link</a>
+                </div>
+              </div>
+              <!-- drop down end -->
+            </section>
+            <!-- update button-->
+            <div
+              type="button"
+              class="text-sm px-3 py-2 leading-none border rounded text-yellow-500 hover:border-transparent hover:text-slate-100 hover:bg-red-600 my-1 inline-flex"
+              (click)="onUpdate(); $event.stopPropagation();"
+              [ngStyle]="{ 'cursor': 'pointer' }">
+              Update
+            </div>
+            <!-- end update button-->
+          </div>
+          <!--  end if car is given -->
+          <div *ngIf="!givenCar">
+            Select A Car
+          </div>
+        </div>
+      </section>
+      <!--    Delete the selected car-->
+      <section>
+        <div *ngIf="selectedTab === 'del'" class="p-4 bg-white  dark:bg-gray-800">
+          <div *ngIf="givenCar" class="text-red-500">
+            Delete the selected car
+            <h1>id: {{ givenCar._id }}</h1>
+            <h3>Owner: {{ givenCar.owner }}</h3>
+            <h3>Model: {{ givenCar.car_model }}</h3>
+            <h3>N-Plate: {{ givenCar.car_numberplate }}</h3>
+            <h3>Job Status: {{ givenCar.job_status }}</h3>
+            <h3>Job Progress: {{ givenCar.job_progress }}</h3>
+            <div
+              type="button"
+              class="text-sm px-3 py-2 leading-none border rounded text-red-600 hover:border-transparent hover:text-slate-100 hover:bg-red-600 my-1 inline-flex"
+              (click)="onDelete(); $event.stopPropagation();"
+              [ngStyle]="{ 'cursor': 'pointer' }">
+              Delete
+            </div>
+          </div>
+          <div *ngIf="!givenCar">
+            Select A Car
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+</section>

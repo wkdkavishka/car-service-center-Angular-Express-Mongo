@@ -49,7 +49,7 @@ export class AllCarsComponent implements OnInit {
 
   // onDelete(car: Car) {
   //   this.carService.deleteACar(car).then(
-  //     (r) => this.findAndDelete(r, this.cars)
+  //     (r) => this.findAndDeleteCar(r, this.cars)
   //   ).catch(err => console.log(err));
   // }
 

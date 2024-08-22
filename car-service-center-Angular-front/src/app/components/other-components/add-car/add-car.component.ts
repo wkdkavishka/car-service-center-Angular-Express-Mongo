@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {NgForOf} from "@angular/common";
-import {CarCardComponent} from "../car-card/car-card.component";
+import {CarDetailsComponent} from "../car-details/car-details.component";
 import {CarService} from "../../../services/car.service";
 import {Car} from "../../../data-objects/models/car";
 
@@ -11,7 +11,7 @@ import {Car} from "../../../data-objects/models/car";
   imports: [
     FormsModule,
     NgForOf,
-    CarCardComponent
+    CarDetailsComponent
   ],
   templateUrl: './add-car.component.html',
   styleUrl: './add-car.component.scss'
@@ -50,13 +50,15 @@ export class AddCarComponent implements OnInit {
       owner: this.owner,
       car_model: this.car_model,
       car_numberplate: this.car_numberplate,
-      job_status: 'open', // by default
-      job_progress: '0' // by default
+      job_status: true, // by default
+      job_progress: 0 // by default
     };
 
     // this.cars seems to be sync with carService's cars list
     // add car to the service
-    this.carService.addACar(newCar);
+    this.carService.addACar(newCar).then(
+      // r => this.carService.cars.push(r)
+    );
 
     // clear fields after submit
     this.owner = '';
@@ -66,7 +68,4 @@ export class AddCarComponent implements OnInit {
     this.carInput.nativeElement.focus();
   }
 
-  onDelete(car: Car): void {
-    this.carService.deleteACar(car)
-  }
 }

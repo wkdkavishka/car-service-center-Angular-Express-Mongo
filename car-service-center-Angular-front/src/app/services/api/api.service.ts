@@ -46,25 +46,24 @@ export class ApiService {
   // Method to Update A Car
   patchACar(car: Car): Observable<Car> {
     const url = `${this.baseUrl}${car._id}`; // Your API endpoint
+    // todo -> use dto pattern // dto.service
+    // casting
+    const newCar: {
+      owner: string,
+      car_model: string,
+      car_numberplate: string,
+      job_status: boolean,
+      job_progress: number,
+    } = {
+      owner: car.owner,
+      car_model: car.car_model,
+      car_numberplate: car.car_numberplate,
+      job_status: car.job_status,
+      // job_progress: parseInt(this.job_progress),
+      job_progress: car.job_progress,
+    };
 
-    // const newCar: {
-    //   owner: string,
-    //   car_model: string,
-    //   car_numberplate: string,
-    //   job_status: string | undefined,
-    //   job_progress: string | undefined,
-    // } = {
-    //   owner: car.owner,
-    //   car_model: car.car_model,
-    //   car_numberplate: car.car_numberplate,
-    //   job_status: car.job_status,
-    //   // job_progress: parseInt(this.job_progress),
-    //   job_progress: car.job_progress,
-    // };
-
-    console.log(url);
-
-    return this.http.patch<Car>(url, car);
+    return this.http.patch<Car>(url, newCar);
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {AddCarComponent} from "../../components/other-components/add-car/add-car.component";
 import {AllCarsComponent} from "../../components/other-components/all-cars/all-cars.component";
-import {CarCardComponent} from "../../components/other-components/car-card/car-card.component";
+import {CarDetailsComponent} from "../../components/other-components/car-details/car-details.component";
 import {Car} from "../../data-objects/models/car";
 
 @Component({
@@ -10,7 +10,7 @@ import {Car} from "../../data-objects/models/car";
   imports: [
     AddCarComponent,
     AllCarsComponent,
-    CarCardComponent
+    CarDetailsComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
