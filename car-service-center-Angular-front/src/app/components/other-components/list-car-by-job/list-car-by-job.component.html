@@ -1,5 +1,12 @@
+<div class="flex justify-center items-center">
+  <!-- title -->
+  <small class="ms-2 my-2 text-4xl font-semibold text-gray-500 dark:text-gray-400 text-center">
+    Find Cars
+  </small>
+</div>
+
 <section>
-  <div class="flex relative justify-between flex-wrap">
+  <div class="flex relative justify-evenly flex-wrap">
     <!--    drop down button    -->
     <div (click)="toggleDropdownProgress()"
          class="relative text-sm px-3 py-2 leading-none border rounded text-blue-500 hover:border-transparent hover:text-slate-100 hover:bg-blue-500 my-1 inline-flex"
@@ -13,7 +20,7 @@
     </div>
     <!--    drop down button  end  -->
     <!--    drop down button    -->
-    <div (click)="toggleDropdownProgress()"
+    <div (click)="toggleDropdownStatus()"
          class="relative text-sm px-3 py-2 leading-none border rounded text-blue-500 hover:border-transparent hover:text-slate-100 hover:bg-blue-500 my-1 inline-flex"
          type="button">
       Select State
@@ -24,6 +31,21 @@
       </svg>
     </div>
     <!--    drop down button  end  -->
+    <!-- filter by id -->
+    <div class="relative z-0 mb-1 group inline-flex">
+      <input #numberPlate [(ngModel)]="car_numberplate"
+             class="block pb-2.5 px-0 text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+             id="numberPlate"
+             name="numberPlate"
+             placeholder=""
+             type="text"/>
+      <label
+        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+        for="numberPlate">
+        Number Plate
+      </label>
+    </div>
+    <!-- filter by id end -->
     <!-- update button-->
     <div
       type="button"
@@ -35,9 +57,9 @@
     <!-- end update button-->
   </div>
   <!-- ########################### -->
-  <!-- Dropdown menu -->
+  <!-- Dropdown menu Progress -->
   <div *ngIf="isProgressDropdownOpen"
-       class="row-start-1 col-start-1 z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+       class="relative z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
     <ul
       class="text-white absolute z-10 mt-2 w-24 rounded backdrop-blur-xl bg-green-500/50 text-center"
     >
@@ -74,6 +96,27 @@
     </ul>
   </div>
   <!-- drop down menu end -->
+  <!-- Dropdown menu Status -->
+  <div *ngIf="isStatusDropdownOpen"
+       class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+    <ul
+      class="text-white absolute z-10 mt-2 w-24 rounded backdrop-blur-xl bg-green-500/50 text-center"
+    >
+      <li>
+        <div
+          (click)="setJobStatus(true)"
+          class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">Open
+        </div>
+      </li>
+      <li>
+        <div
+          (click)="setJobStatus(false)"
+          class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">Close
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-- drop down status end -->
 </section>
 
 
@@ -96,7 +139,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let car of t_cars; let i = index"
+  <tr *ngFor="let car of found_cars; let i = index"
       class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
       (click)="selectReturnCar(car)"
       [ngStyle]="{ 'cursor': 'pointer', 'user-select': 'none' }">

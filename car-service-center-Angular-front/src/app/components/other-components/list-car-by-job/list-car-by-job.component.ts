@@ -22,10 +22,14 @@ export class ListCarByJobComponent implements OnInit {
   returnCar: EventEmitter<Car> = new EventEmitter<Car>();
 
   cars: Car[] = [];
-  t_cars: Car[] = []; // to temporary hold
+  found_cars: Car[] = []; // to temporary hold
   // for data binding
   job_progress: number = -1 //
   isProgressDropdownOpen = false; //
+  isStatusDropdownOpen = false;
+  car_numberplate: string = '';
+  job_status: boolean = false;
+
 
   constructor(
     private carService: CarService,
@@ -49,11 +53,26 @@ export class ListCarByJobComponent implements OnInit {
   }
 
   onFind(): void {
-    this.t_cars = [];
+    this.found_cars = [];
     this.cars.forEach((car: Car) => {
-      if (this.job_progress === car.job_progress) {
-        this.t_cars.push(car);
+      if (this.job_progress) {
+        if (this.job_progress === car.job_progress) {
+          this.found_cars.push(car);
+        }
       }
+      if (this.car_numberplate) {
+        if (this.car_numberplate === car.car_numberplate) {
+          this.found_cars.push(car);
+        }
+      }
+      if (this.job_status) {
+        if (this.job_status === car.job_status) {
+          this.found_cars.push(car);
+        }
+      }
+
+      this.found_cars = this.carService.findAndRemoveDuplicateCars(this.found_cars);
+
     })
   }
 
@@ -63,5 +82,14 @@ export class ListCarByJobComponent implements OnInit {
 
   selectReturnCar(car: Car): void {
     this.returnCar.emit(car); // Emit the selected car
+  }
+
+  setJobStatus(b: boolean) {
+      this.job_status = b;
+      this.isStatusDropdownOpen = false;
+  }
+
+  toggleDropdownStatus() {
+    this.isStatusDropdownOpen = !this.isStatusDropdownOpen;
   }
 }

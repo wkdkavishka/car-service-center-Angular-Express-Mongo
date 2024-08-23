@@ -107,6 +107,17 @@ export class CarService {
     }
   }
 
+  findAndRemoveDuplicateCars(cars: Car[]) : Car[] {
+    let seen: Car[] = [];
+    seen.push(cars[0]);
+     cars.forEach((car) => {
+        if(!seen.includes(car)) {
+          seen.push(car); }
+     })
+
+    return seen;
+  }
+
   private findAndReplaceCar(car: Car) {
     for (let i = 0; i < this.cars.length; i++) {
       if (car._id == this.cars[i]._id) {
