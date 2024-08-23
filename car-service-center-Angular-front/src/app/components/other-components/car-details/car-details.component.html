@@ -10,10 +10,10 @@
       </small>
     </div>
     <div class="sm:hidden">
-      <label for="tabs" class="sr-only">Select tab</label>
-      <select id="tabs"
+      <label class="sr-only" for="tabs">Select tab</label>
+      <select (change)="selectTabMobile($event)"
               class="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              (change)="selectTabMobile($event)">
+              id="tabs">
         <option value="stats">Details</option>
         <option value="Progress">Jobs</option>
         <option value="del">Delete</option>
@@ -73,10 +73,10 @@
                         class="text-sm px-3 py-2 leading-none border rounded text-yellow-500 hover:border-transparent hover:text-slate-100 hover:bg-yellow-500 my-1 inline-flex"
                         type="button">
                   Status : {{ givenCar.job_status }}
-                  <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                       viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="m1 1 4 4 4-4"/>
+                  <svg aria-hidden="true" class="w-2.5 h-2.5 ms-3" fill="none" viewBox="0 0 10 6"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"/>
                   </svg>
                 </button>
                 <!--    drop down button  end  -->
@@ -107,10 +107,10 @@
                         class="text-sm px-3 py-2 leading-none border rounded text-yellow-500 hover:border-transparent hover:text-slate-100 hover:bg-yellow-500 my-1 inline-flex"
                         type="button">
                   Progress : Stage - {{ givenCar.job_progress }}
-                  <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                       viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="m1 1 4 4 4-4"/>
+                  <svg aria-hidden="true" class="w-2.5 h-2.5 ms-3" fill="none" viewBox="0 0 10 6"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"/>
                   </svg>
                 </button>
                 <!--    drop down button  end  -->
@@ -153,12 +153,12 @@
                 <!-- drop down end -->
               </div>
             </div>
-             <!-- update button-->
+            <!-- update button-->
             <div
-              type="button"
-              class="text-sm px-3 py-2 leading-none border rounded text-yellow-500 hover:border-transparent hover:text-slate-100 hover:bg-yellow-500 my-1 inline-flex"
               (click)="onUpdate()"
-              [ngStyle]="{ 'cursor': 'pointer' }">
+              [ngStyle]="{ 'cursor': 'pointer' }"
+              class="text-sm px-3 py-2 leading-none border rounded text-yellow-500 hover:border-transparent hover:text-slate-100 hover:bg-yellow-500 my-1 inline-flex"
+              type="button">
               Update
             </div>
             <!-- end update button-->
@@ -181,10 +181,10 @@
             <h3>Job Status: {{ givenCar.job_status }}</h3>
             <h3>Job Progress: {{ givenCar.job_progress }}</h3>
             <div
-              type="button"
-              class="text-sm px-3 py-2 leading-none border rounded text-red-600 hover:border-transparent hover:text-slate-100 hover:bg-red-600 my-1 inline-flex"
               (click)="onDelete()"
-              [ngStyle]="{ 'cursor': 'pointer' }">
+              [ngStyle]="{ 'cursor': 'pointer' }"
+              class="text-sm px-3 py-2 leading-none border rounded text-red-600 hover:border-transparent hover:text-slate-100 hover:bg-red-600 my-1 inline-flex"
+              type="button">
               Delete
             </div>
           </div>
@@ -195,4 +195,17 @@
       </section>
     </div>
   </section>
+  <div class="border-t border-gray-200 dark:border-gray-600 dark:text-slate-100">
+    <div class="p-4 bg-white  dark:bg-gray-800">
+      <div>
+        Total number of Cars : {{ getTotalCars() }}
+      </div>
+      <div>
+        {{ tos }} : marked Status Open
+      </div>
+      <div>
+        {{ tcs }} : marked Status Close
+      </div>
+    </div>
+  </div>
 </section>

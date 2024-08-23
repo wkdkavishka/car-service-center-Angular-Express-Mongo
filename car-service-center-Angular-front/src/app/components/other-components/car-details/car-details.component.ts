@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, Input, OnInit,} from '@angular/core';
 import {CarService} from "../../../services/car.service";
 import {Car} from "../../../data-objects/models/car";
 import {NgClass, NgIf, NgStyle} from "@angular/common";
@@ -19,15 +19,18 @@ import {FormsModule} from "@angular/forms";
 export class CarDetailsComponent implements OnInit {
 
   // @ViewChild('jobStatus') carInput!: ElementRef;
+  cars: Car[] = [];
+
 
   @Input()
   givenCar!: Car; // The selected car from all-cars component
 
   // for data binding
-  isStatusDropdownOpen = false; //
-  isProgressDropdownOpen = false; //
-  // carGiven: boolean = false;
+  isStatusDropdownOpen: boolean = false; //
+  isProgressDropdownOpen: boolean = false; //
   selectedTab: string = "stats"; // default tab
+  tos: number = 0; // total Open states
+  tcs: number = 0; // total closed states
 
   constructor(
     private carService: CarService
@@ -46,6 +49,19 @@ export class CarDetailsComponent implements OnInit {
         job_progress: 0 // Default to 0 (e.g., no progress)
       };
     }
+    this.carService.AllCars()
+      .then((r) => this.cars = r)
+      .then((cars) => {
+        cars.forEach((car) => {
+          console.log("typeof job_status ",typeof car.job_status); // Should be "boolean"
+          if (car.job_status) {
+            this.tos++;
+          } else {
+            this.tcs++;
+          }
+        })
+      })
+      .catch((err) => console.log(err));
   }
 
   // ngOnChanges(changes: SimpleChanges): void {
@@ -116,4 +132,7 @@ export class CarDetailsComponent implements OnInit {
     console.log('Selected Job Progress:', this.givenCar.job_progress); // Handle the status as needed
   }
 
+  getTotalCars() {
+    return this.carService.cars.length;
+  }
 }

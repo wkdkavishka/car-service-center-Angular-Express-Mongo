@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AddCarComponent} from "../../components/other-components/add-car/add-car.component";
 import {RouterOutlet} from "@angular/router";
 import {AllCarsComponent} from "../../components/other-components/all-cars/all-cars.component";

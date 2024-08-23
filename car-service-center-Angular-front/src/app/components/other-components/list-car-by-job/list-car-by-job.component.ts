@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgForOf, NgIf, NgStyle} from "@angular/common";
 import {Car} from "../../../data-objects/models/car";
-import {FormBuilder, FormsModule} from "@angular/forms";
+import {FormsModule} from "@angular/forms";
 import {CarService} from "../../../services/car.service";
 
 @Component({
@@ -24,11 +24,11 @@ export class ListCarByJobComponent implements OnInit {
   cars: Car[] = [];
   found_cars: Car[] = []; // to temporary hold
   // for data binding
-  job_progress: number = -1 //
+  job_progress: number = 1 //
   isProgressDropdownOpen = false; //
   isStatusDropdownOpen = false;
   car_numberplate: string = '';
-  job_status: boolean = false;
+  job_status: boolean = true;
 
 
   constructor(
@@ -70,9 +70,7 @@ export class ListCarByJobComponent implements OnInit {
           this.found_cars.push(car);
         }
       }
-
-      this.found_cars = this.carService.findAndRemoveDuplicateCars(this.found_cars);
-
+      // this.found_cars = this.carService.findAndRemoveDuplicateCars(this.found_cars);
     })
   }
 
@@ -85,8 +83,8 @@ export class ListCarByJobComponent implements OnInit {
   }
 
   setJobStatus(b: boolean) {
-      this.job_status = b;
-      this.isStatusDropdownOpen = false;
+    this.job_status = b;
+    this.isStatusDropdownOpen = false;
   }
 
   toggleDropdownStatus() {

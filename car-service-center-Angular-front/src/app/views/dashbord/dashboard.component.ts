@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AddCarComponent} from "../../components/other-components/add-car/add-car.component";
 import {AllCarsComponent} from "../../components/other-components/all-cars/all-cars.component";
 import {CarDetailsComponent} from "../../components/other-components/car-details/car-details.component";
@@ -21,7 +21,7 @@ export class DashboardComponent {
 
   selectedCar!: Car;
 
-  onCarSelect(car: Car) : void{
+  onCarSelect(car: Car): void {
     this.selectedCar = car;
   }
 }

@@ -21,16 +21,6 @@ export class CarService {
   }
 
   // todo -> implement -> fetch cars with limit of n
-  // Method to initialize or refresh data
-  private async initialize(): Promise<void> {
-    try {
-      this.cars = await firstValueFrom(this.apiService.fetchAllCars());
-      this.fetched = true;
-    } catch (error) {
-      console.error('Error initialize cars:', error);
-      throw error;
-    }
-  }
 
   // Refresh cars and wait until the data is fetched
   async refreshCarList(): Promise<Car[]> {
@@ -85,7 +75,6 @@ export class CarService {
     }
   }
 
-
   async deleteACar(car: Car): Promise<void> {
     try {
       let d_car = await firstValueFrom(this.apiService.deleteACar(car));
@@ -107,15 +96,27 @@ export class CarService {
     }
   }
 
-  findAndRemoveDuplicateCars(cars: Car[]) : Car[] {
+  findAndRemoveDuplicateCars(cars: Car[]): Car[] {
     let seen: Car[] = [];
     seen.push(cars[0]);
-     cars.forEach((car) => {
-        if(!seen.includes(car)) {
-          seen.push(car); }
-     })
+    cars.forEach((car) => {
+      if (!seen.includes(car)) {
+        seen.push(car);
+      }
+    })
 
     return seen;
+  }
+
+  // Method to initialize or refresh data
+  private async initialize(): Promise<void> {
+    try {
+      this.cars = await firstValueFrom(this.apiService.fetchAllCars());
+      this.fetched = true;
+    } catch (error) {
+      console.error('Error initialize cars:', error);
+      throw error;
+    }
   }
 
   private findAndReplaceCar(car: Car) {

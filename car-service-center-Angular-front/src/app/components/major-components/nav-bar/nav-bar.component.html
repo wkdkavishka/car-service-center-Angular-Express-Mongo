@@ -4,20 +4,20 @@
       <!-- navigation menu panel -->
       <div class="flex justify-between ">
         <div
-          id="menu-1"
           class="flex-auto flex-wrap px-4 md:flex justify-between items-center md:w-auto"
+          id="menu-1"
         >
           <div class="text-sm block md:flex ">
             <a
-              routerLink=""
-              class="block py-2 px-2 mr-2 md:inline-block md:mt-0 text-teal-200 hover:text-white hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl rounded"
-              routerLinkActive="bg-white/30 dark:bg-black/30 backdrop-blur-xl"
               [routerLinkActiveOptions]="{ exact: true }"
+              class="block py-2 px-2 mr-2 md:inline-block md:mt-0 text-teal-200 hover:text-white hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl rounded"
+              routerLink=""
+              routerLinkActive="bg-white/30 dark:bg-black/30 backdrop-blur-xl"
             >Home
             </a>
             <a
-              routerLink="dashboard"
               class="block py-2 px-2 mr-2 md:inline-block md:mt-0 text-teal-200 hover:text-white hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl rounded"
+              routerLink="dashboard"
               routerLinkActive="bg-white/30 dark:bg-black/30 backdrop-blur-xl"
             >Dashboard
             </a>
@@ -26,12 +26,12 @@
         <!-- menu-1 end -->
         <!-- menu-2 -->
         <div
-          id="menu-2"
           class="flex-auto flex-wrap px-4 md:flex md:items-center justify-end md:w-auto"
+          id="menu-2"
         >
           <a
-            routerLink="about"
             class="block py-2 px-2 mr-2 md:inline-block md:mt-0 text-teal-200 text-right hover:text-white hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl rounded"
+            routerLink="about"
             routerLinkActive="bg-white/30 dark:bg-black/30 backdrop-blur-xl"
           >About
           </a>
@@ -42,24 +42,24 @@
         <section>
           <div class="relative inline-block text-right">
             <div
-              id="menu-button"
-              type="button"
-              class="text-sm px-3 py-2 leading-none border rounded text-white hover:border-transparent hover:text-teal-500 hover:bg-white my-1 inline-flex"
+              (click)="darkToggle()"
               aria-expanded="true"
               aria-haspopup="true"
-              (click)="darkToggle()"
+              class="text-sm px-3 py-2 leading-none border rounded text-white hover:border-transparent hover:text-teal-500 hover:bg-white my-1 inline-flex"
+              id="menu-button"
+              type="button"
             >
               <label class="hidden sm:block"> Colour </label>
               <svg
-                class="h-4 w-4 text-gray-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
                 aria-hidden="true"
+                class="h-4 w-4 text-gray-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
               >
                 <path
-                  fill-rule="evenodd"
-                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
                   clip-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                  fill-rule="evenodd"
                 />
               </svg>
             </div>
@@ -69,14 +69,14 @@
             >
               <div role="none">
                 <div
-                  class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl"
                   (click)="DarkMode(false)"
+                  class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl"
                 >Light
                 </div
                 >
                 <div
-                  class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl"
                   (click)="DarkMode(true)"
+                  class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl"
                 >Dark
                 </div
                 >

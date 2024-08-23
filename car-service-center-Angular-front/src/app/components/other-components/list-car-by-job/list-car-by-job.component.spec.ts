@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ListCarByJobComponent } from './list-car-by-job.component';
+import {ListCarByJobComponent} from './list-car-by-job.component';
 
 describe('ListCarByJobComponent', () => {
   let component: ListCarByJobComponent;
@@ -10,7 +10,7 @@ describe('ListCarByJobComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ListCarByJobComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ListCarByJobComponent);
     component = fixture.componentInstance;
