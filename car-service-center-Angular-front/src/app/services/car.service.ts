@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Car} from '../data-objects/models/car';
+import {Car} from '../models/car';
 import {firstValueFrom} from "rxjs";
 import {ApiService} from "./api/api.service";
 

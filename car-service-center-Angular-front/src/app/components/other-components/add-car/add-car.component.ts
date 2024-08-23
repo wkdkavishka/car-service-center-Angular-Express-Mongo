@@ -3,7 +3,7 @@ import {FormsModule} from "@angular/forms";
 import {NgForOf} from "@angular/common";
 import {CarDetailsComponent} from "../car-details/car-details.component";
 import {CarService} from "../../../services/car.service";
-import {Car} from "../../../data-objects/models/car";
+import {Car} from "../../../models/car";
 
 @Component({
   selector: 'app-add-car',

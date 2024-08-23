@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {AddCarComponent} from "../../components/other-components/add-car/add-car.component";
 import {AllCarsComponent} from "../../components/other-components/all-cars/all-cars.component";
 import {CarDetailsComponent} from "../../components/other-components/car-details/car-details.component";
-import {Car} from "../../data-objects/models/car";
+import {Car} from "../../models/car";
 import {ListCarByJobComponent} from "../../components/other-components/list-car-by-job/list-car-by-job.component";
 
 @Component({

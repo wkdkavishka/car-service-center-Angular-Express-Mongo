@@ -1,6 +1,6 @@
 import {Component, Input, OnInit,} from '@angular/core';
 import {CarService} from "../../../services/car.service";
-import {Car} from "../../../data-objects/models/car";
+import {Car} from "../../../models/car";
 import {NgClass, NgIf, NgStyle} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 

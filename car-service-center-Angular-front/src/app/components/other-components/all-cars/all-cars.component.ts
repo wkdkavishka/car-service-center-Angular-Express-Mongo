@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgForOf, NgStyle} from "@angular/common";
 import {CarService} from "../../../services/car.service";
-import {Car} from "../../../data-objects/models/car";
+import {Car} from "../../../models/car";
 
 @Component({
   selector: 'app-all-cars',

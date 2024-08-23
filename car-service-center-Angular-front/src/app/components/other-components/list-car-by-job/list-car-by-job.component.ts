@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgForOf, NgIf, NgStyle} from "@angular/common";
-import {Car} from "../../../data-objects/models/car";
+import {Car} from "../../../models/car";
 import {FormsModule} from "@angular/forms";
 import {CarService} from "../../../services/car.service";
 
