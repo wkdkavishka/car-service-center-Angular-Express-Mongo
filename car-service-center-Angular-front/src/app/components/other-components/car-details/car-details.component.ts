@@ -17,10 +17,8 @@ import {FormsModule} from "@angular/forms";
   styleUrl: './car-details.component.scss'
 })
 export class CarDetailsComponent implements OnInit {
-
   // @ViewChild('jobStatus') carInput!: ElementRef;
   cars: Car[] = [];
-
 
   @Input()
   givenCar!: Car; // The selected car from all-cars component
@@ -29,8 +27,6 @@ export class CarDetailsComponent implements OnInit {
   isStatusDropdownOpen: boolean = false; //
   isProgressDropdownOpen: boolean = false; //
   selectedTab: string = "stats"; // default tab
-  tos: number = 0; // total Open states
-  tcs: number = 0; // total closed states
 
   constructor(
     private carService: CarService
@@ -46,30 +42,10 @@ export class CarDetailsComponent implements OnInit {
         car_numberplate: 'XXX-0000',
         _id: '-1',
         job_status: false, // Default to false (e.g., closed)
-        job_progress: 0 // Default to 0 (e.g., no progress)
+        job_progress: -1 // Default to 0 (e.g., no progress)
       };
     }
-    this.carService.AllCars()
-      .then((r) => this.cars = r)
-      .then((cars) => {
-        cars.forEach((car) => {
-          console.log("typeof job_status ",typeof car.job_status); // Should be "boolean"
-          if (car.job_status) {
-            this.tos++;
-          } else {
-            this.tcs++;
-          }
-        })
-      })
-      .catch((err) => console.log(err));
   }
-
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (changes['givenCar'] && this.givenCar) {
-  //     // If givenCar is assigned or changed, set carGiven to true
-  //     this.carGiven = true;
-  //   }
-  // }
 
   selectTab(tab: string): void {
     this.selectedTab = tab;
@@ -86,30 +62,14 @@ export class CarDetailsComponent implements OnInit {
 
   onUpdate() {
     // todo -> fix this messy update // stop replacing
-    // Create a newCar object
-    const newCar: Car = {// _id
-      _id: this.givenCar._id,
-      owner: this.givenCar.owner,
-      car_model: this.givenCar.car_model,
-      car_numberplate: this.givenCar.car_numberplate,
-      job_status: this.givenCar.job_status, // by default
-      job_progress: this.givenCar.job_progress, // by default
-    };
-
-    // add car to the service // this.cars seems to be sync with carService's cars listv
-    this.carService.updateACar(newCar).then((r) => {
-        // update this given car
-        this.givenCar.job_status = r.job_status;
-        this.givenCar.job_progress = r.job_progress;
+    console.log("given car before ",this.givenCar);
+    this.carService.updateACar(this.givenCar).then((r) => {
+      console.log("r->",r);
+       this.givenCar = r;
       }
     ).catch((err) => {
       console.log(err)
     });
-
-    // clear fields after submit
-
-    // Set focus to the input element
-    // this.carInput.nativeElement.focus();
   }
 
   toggleDropdownStatus(): void {
@@ -132,7 +92,15 @@ export class CarDetailsComponent implements OnInit {
     console.log('Selected Job Progress:', this.givenCar.job_progress); // Handle the status as needed
   }
 
-  getTotalCars() {
-    return this.carService.cars.length;
+  // Single implementation
+  getTotalCars(status?: boolean): number {
+    if (status === undefined) {
+      return this.carService.cars.length;
+    } else {
+      return this.carService.cars.filter(
+        car => car.job_status === status
+      ).length;
+    }
   }
+
 }

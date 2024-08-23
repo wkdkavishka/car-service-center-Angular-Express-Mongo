@@ -23,7 +23,7 @@
     <div (click)="toggleDropdownStatus()"
          class="relative text-sm px-3 py-2 leading-none border rounded text-blue-500 hover:border-transparent hover:text-slate-100 hover:bg-blue-500 my-1 inline-flex"
          type="button">
-      Status {{ job_status }}
+      Status {{ job_status ? "Open" : "Close" }}
       <svg aria-hidden="true" class="w-2.5 h-2.5 ms-3" fill="none" viewBox="0 0 10 6"
            xmlns="http://www.w3.org/2000/svg">
         <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
