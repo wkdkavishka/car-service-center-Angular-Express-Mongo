@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild} from '@angular/core';
 import {NgForOf, NgIf, NgStyle} from "@angular/common";
 import {Car} from "../../../models/car";
 import {FormsModule} from "@angular/forms";
@@ -20,6 +20,7 @@ export class ListCarByJobComponent implements OnInit {
 
   @Output()
   returnCar: EventEmitter<Car> = new EventEmitter<Car>();
+  // @ViewChild('dropdown', { static: true }) dropdownRef!: ElementRef;
 
   cars: Car[] = [];
   found_cars: Car[] = []; // to temporary hold
@@ -41,6 +42,14 @@ export class ListCarByJobComponent implements OnInit {
     this.carService.AllCars().then((r) => this.cars = r)
       .catch((err) => console.log(err));
   }
+
+  // Close dropdown when clicking outside
+  // @HostListener('document:click', ['$event'])
+  // clickOutside(event: Event) {
+  //   if (this.isStatusDropdownOpen && !this.dropdownRef.nativeElement.contains(event.target)) {
+  //     this.isStatusDropdownOpen = false;
+  //   }
+  // }
 
   toggleDropdownProgress() {
     this.isProgressDropdownOpen = !this.isProgressDropdownOpen;

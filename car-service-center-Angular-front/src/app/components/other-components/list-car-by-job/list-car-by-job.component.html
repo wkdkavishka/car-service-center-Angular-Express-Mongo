@@ -6,29 +6,95 @@
 </div>
 
 <section>
-  <div class="flex relative justify-evenly flex-wrap">
-    <!--    drop down button    -->
-    <div (click)="toggleDropdownProgress()"
-         class="relative text-sm px-3 py-2 leading-none border rounded text-blue-500 hover:border-transparent hover:text-slate-100 hover:bg-blue-500 my-1 inline-flex"
-         type="button">
-      Stage {{ job_progress }}
-      <svg aria-hidden="true" class="w-2.5 h-2.5 ms-3" fill="none" viewBox="0 0 10 6"
-           xmlns="http://www.w3.org/2000/svg">
-        <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2"/>
-      </svg>
+  <div class="flex justify-evenly flex-wrap">
+    <div class="dropDown">
+      <!--    drop down button progress   -->
+      <div #dropdown
+           (click)="toggleDropdownProgress()"
+           class="dropDown-button"
+           type="button">
+        Stage {{ job_progress }}
+        <svg aria-hidden="true" class="w-2.5 h-2.5 ms-3" fill="none" viewBox="0 0 10 6"
+             xmlns="http://www.w3.org/2000/svg">
+          <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2"/>
+        </svg>
+      </div>
+      <!--    drop down button  end  -->
+      <!-- Dropdown menu Progress -->
+      <div *ngIf="isProgressDropdownOpen">
+        <ul
+          class="dropDown-menu"
+        >
+          <li>
+            <div
+              (click)="setJobProgress(1)"
+              class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">1
+            </div>
+          </li>
+          <li>
+            <div
+              (click)="setJobProgress(2)"
+              class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">2
+            </div>
+          </li>
+          <li>
+            <div
+              (click)="setJobProgress(3)"
+              class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">3
+            </div>
+          </li>
+          <li>
+            <div
+              (click)="setJobProgress(4)"
+              class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">4
+            </div>
+          </li>
+          <li>
+            <div
+              (click)="setJobProgress(5)"
+              class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">5
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- drop down menu progress end -->
     </div>
-    <!--    drop down button  end  -->
-    <!--    drop down button    -->
-    <div (click)="toggleDropdownStatus()"
-         class="relative text-sm px-3 py-2 leading-none border rounded text-blue-500 hover:border-transparent hover:text-slate-100 hover:bg-blue-500 my-1 inline-flex"
-         type="button">
-      Status {{ job_status ? "Open" : "Close" }}
-      <svg aria-hidden="true" class="w-2.5 h-2.5 ms-3" fill="none" viewBox="0 0 10 6"
-           xmlns="http://www.w3.org/2000/svg">
-        <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-              stroke-width="2"/>
-      </svg>
+    <div class="dropDown">
+      <!--    drop down button  status  -->
+      <div (click)="toggleDropdownStatus()"
+           class="dropDown-button"
+           type="button">
+        Status {{ job_status ? "Open" : "Close" }}
+        <svg aria-hidden="true" class="w-2.5 h-2.5 ms-3" fill="none" viewBox="0 0 10 6"
+             xmlns="http://www.w3.org/2000/svg">
+          <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2"/>
+        </svg>
+      </div>
+      <!-- Dropdown menu Status -->
+      <div *ngIf="isStatusDropdownOpen"
+           class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+        <ul
+          class="dropDown-menu"
+        >
+          <li>
+            <div
+              (click)="setJobStatus(true)"
+              class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">
+              Open
+            </div>
+          </li>
+          <li>
+            <div
+              (click)="setJobStatus(false)"
+              class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">
+              Close
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- drop down status end -->
     </div>
     <!--    drop down button  end  -->
     <!-- filter by id -->
@@ -50,73 +116,12 @@
     <div
       (click)="onFind()"
       [ngStyle]="{ 'cursor': 'pointer' }"
-      class="relative text-sm px-3 py-2 leading-none border rounded text-green-500 hover:border-transparent hover:text-slate-100 hover:bg-green-500 my-1 inline-flex"
+      class="find"
       type="button">
       Find
     </div>
     <!-- end update button-->
   </div>
-  <!-- ########################### -->
-  <!-- Dropdown menu Progress -->
-  <div *ngIf="isProgressDropdownOpen"
-       class="relative z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-    <ul
-      class="text-white absolute z-10 mt-2 w-24 rounded backdrop-blur-xl bg-green-500/50 text-center"
-    >
-      <li>
-        <div
-          (click)="setJobProgress(1)"
-          class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">1
-        </div>
-      </li>
-      <li>
-        <div
-          (click)="setJobProgress(2)"
-          class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">2
-        </div>
-      </li>
-      <li>
-        <div
-          (click)="setJobProgress(3)"
-          class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">3
-        </div>
-      </li>
-      <li>
-        <div
-          (click)="setJobProgress(4)"
-          class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">4
-        </div>
-      </li>
-      <li>
-        <div
-          (click)="setJobProgress(5)"
-          class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">5
-        </div>
-      </li>
-    </ul>
-  </div>
-  <!-- drop down menu end -->
-  <!-- Dropdown menu Status -->
-  <div *ngIf="isStatusDropdownOpen"
-       class="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-    <ul
-      class="text-white absolute z-10 mt-2 w-24 rounded backdrop-blur-xl bg-green-500/50 text-center"
-    >
-      <li>
-        <div
-          (click)="setJobStatus(true)"
-          class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">Open
-        </div>
-      </li>
-      <li>
-        <div
-          (click)="setJobStatus(false)"
-          class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl">Close
-        </div>
-      </li>
-    </ul>
-  </div>
-  <!-- drop down status end -->
 </section>
 
 

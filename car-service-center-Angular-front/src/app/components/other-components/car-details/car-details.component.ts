@@ -62,10 +62,10 @@ export class CarDetailsComponent implements OnInit {
 
   onUpdate() {
     // todo -> fix this messy update // stop replacing
-    console.log("given car before ",this.givenCar);
+    console.log("given car before ", this.givenCar);
     this.carService.updateACar(this.givenCar).then((r) => {
-      console.log("r->",r);
-       this.givenCar = r;
+        console.log("r->", r);
+        this.givenCar = r;
       }
     ).catch((err) => {
       console.log(err)
