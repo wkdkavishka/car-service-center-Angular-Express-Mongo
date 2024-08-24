@@ -66,5 +66,18 @@
 
 // #####################################
 
+@mixin title($colour: $gray-400) {
+  margin-inline-start: 0.5rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: $colour;
+  text-align: center;
 
+  &.dark {
+    color: $green-500;
+
+  }
+}
 
