@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Car} from "../../models/car";
 import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ApiService {
    */
 
   // todo -> use .env or sth better
-  private baseUrl = 'http://localhost:4000/car_service/'; // api path
+  private baseUrl = environment.apiUrl; // api path
 
   constructor(
     private http: HttpClient,
