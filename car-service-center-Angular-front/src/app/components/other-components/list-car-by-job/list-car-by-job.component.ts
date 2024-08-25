@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, HostListener, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgForOf, NgIf, NgStyle} from "@angular/common";
 import {Car} from "../../../models/car";
 import {FormsModule} from "@angular/forms";
@@ -25,17 +25,16 @@ export class ListCarByJobComponent implements OnInit {
   cars: Car[] = [];
   found_cars: Car[] = []; // to temporary hold
   // for data binding
-  job_progress: number = 1 //
+  job_progress: number = -1 //
+  job_status: boolean | null = null;
   isProgressDropdownOpen = false; //
   isStatusDropdownOpen = false;
   car_numberplate: string = '';
-  job_status: boolean = true;
 
 
   constructor(
     private carService: CarService,
   ) {
-
   }
 
   ngOnInit(): void {
@@ -64,7 +63,7 @@ export class ListCarByJobComponent implements OnInit {
   onFind(): void {
     this.found_cars = [];
     this.cars.forEach((car: Car) => {
-      if (this.job_progress) {
+      if (this.job_progress != -1) {
         if (this.job_progress === car.job_progress) {
           this.found_cars.push(car);
         }
@@ -74,13 +73,13 @@ export class ListCarByJobComponent implements OnInit {
           this.found_cars.push(car);
         }
       }
-      if (this.job_status) {
-        if (this.job_status === car.job_status) {
+      if (this.job_status != null) {
+        if (this.job_status == car.job_status) {
           this.found_cars.push(car);
         }
       }
-      // this.found_cars = this.carService.findAndRemoveDuplicateCars(this.found_cars);
     })
+    this.found_cars = this.carService.findAndRemoveDuplicateCars(this.found_cars);
   }
 
   refresh() {
@@ -91,9 +90,10 @@ export class ListCarByJobComponent implements OnInit {
     this.returnCar.emit(car); // Emit the selected car
   }
 
-  setJobStatus(b: boolean) {
+  setJobStatus(b: boolean|null  ) {
     this.job_status = b;
     this.isStatusDropdownOpen = false;
+    console.log(this.job_status);
   }
 
   toggleDropdownStatus() {

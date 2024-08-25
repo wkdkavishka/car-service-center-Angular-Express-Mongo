@@ -197,15 +197,22 @@
   </section>
   <div class="border-t border-gray-200 dark:border-gray-600 dark:text-slate-100">
     <div class="p-4 bg-white  dark:bg-gray-800">
-      <div>
-        Total number of Cars : {{ getTotalCars() }}
-      </div>
-      <div>
-        {{ getTotalCars(true) }} : marked Status Open
-      </div>
-      <div>
-        {{ getTotalCars(false) }} : marked Status Close
-      </div>
+      <table class="table">
+        <tbody>
+        <tr>
+          <td class=""> Total number of Cars :</td>
+          <td>{{ getTotalCars() }}</td>
+        </tr>
+        <tr>
+          <td> marked Status Open :</td>
+          <td>{{ getTotalCars(true) }}</td>
+        </tr>
+        <tr>
+          <td> marked Status Close :</td>
+          <td>{{ getTotalCars(false) }}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>

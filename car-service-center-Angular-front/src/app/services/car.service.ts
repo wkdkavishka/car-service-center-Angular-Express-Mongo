@@ -97,11 +97,13 @@ export class CarService {
 
   findAndRemoveDuplicateCars(cars: Car[]): Car[] {
     let seen: Car[] = [];
+    console.log("cars length",cars.length);
     seen.push(cars[0]);
     cars.forEach((car) => {
-      if (!seen.includes(car)) {
+      if(this.carExists(cars,car._id)){
         seen.push(car);
       }
+      console.log("seen :",car);
     })
 
     return seen;
@@ -126,4 +128,14 @@ export class CarService {
       }
     }
   }
+
+  private carExists(cars: Car[], id:string): boolean {
+    for(let i=0;i<this.cars.length; i++){
+      if(cars[i]._id == id){return true;}
+    }
+    return false;
+  }
+
+
+
 }

@@ -27,8 +27,6 @@
   }
 }
 
-// #####################################
-
 @mixin dropDown($colour: $blue-500) {
   position: relative;
 
@@ -64,8 +62,6 @@
   }
 }
 
-// #####################################
-
 @mixin title($colour: $gray-400) {
   margin-inline-start: 0.5rem;
   padding-top: 0.75rem;
@@ -80,4 +76,21 @@
 
   }
 }
+
+@mixin full-width-text($dark-color: $gray-400, $light-color: $gray-500) {
+  width: 100%;
+  font-size: 0.875rem;
+  text-align: left;
+
+  [dir="rtl"] & {
+    text-align: right;
+  }
+
+  color: $light-color;
+
+  @media (prefers-color-scheme: dark) {
+    color: $dark-color;
+  }
+}
+
 
