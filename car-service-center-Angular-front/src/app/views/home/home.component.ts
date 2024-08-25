@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {AddCarComponent} from "../../components/other-components/add-car/add-car.component";
-import {RouterOutlet} from "@angular/router";
-import {AllCarsComponent} from "../../components/other-components/all-cars/all-cars.component";
-import {CarDetailsComponent} from "../../components/other-components/car-details/car-details.component";
+import { Component } from '@angular/core';
+import { AddCarComponent } from '../../components/other-components/add-car/add-car.component';
+import { RouterOutlet } from '@angular/router';
+import { AllCarsComponent } from '../../components/other-components/all-cars/all-cars.component';
+import { CarDetailsComponent } from '../../components/other-components/car-details/car-details.component';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +11,9 @@ import {CarDetailsComponent} from "../../components/other-components/car-details
     AddCarComponent,
     RouterOutlet,
     AllCarsComponent,
-    CarDetailsComponent
+    CarDetailsComponent,
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
-export class HomeComponent {
-
-}
+export class HomeComponent {}

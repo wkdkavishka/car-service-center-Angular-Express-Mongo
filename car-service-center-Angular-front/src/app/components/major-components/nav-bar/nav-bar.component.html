@@ -1,39 +1,39 @@
-<div class="backdrop-blur-sm bg-teal-900/90 dark:bg-teal-900/70">
+<div class="bg-teal-900/90 backdrop-blur-sm dark:bg-teal-900/70">
   <div class="container mx-auto px-0 md:px-4">
-    <nav class="grid items-center py-1 px-2">
+    <nav class="grid items-center px-2 py-1">
       <!-- navigation menu panel -->
-      <div class="flex justify-between ">
+      <div class="flex justify-between">
         <div
-          class="flex-auto flex-wrap px-4 md:flex justify-between items-center md:w-auto"
+          class="flex-auto flex-wrap items-center justify-between px-4 md:flex md:w-auto"
           id="menu-1"
         >
-          <div class="text-sm block md:flex ">
+          <div class="block text-sm md:flex">
             <a
               [routerLinkActiveOptions]="{ exact: true }"
-              class="block py-2 px-2 mr-2 md:inline-block md:mt-0 text-teal-200 hover:text-white hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl rounded"
+              class="mr-2 block rounded px-2 py-2 text-teal-200 hover:bg-white/30 hover:text-white hover:backdrop-blur-xl dark:hover:bg-black/30 md:mt-0 md:inline-block"
               routerLink=""
               routerLinkActive="bg-white/30 dark:bg-black/30 backdrop-blur-xl"
-            >Home
+              >Home
             </a>
             <a
-              class="block py-2 px-2 mr-2 md:inline-block md:mt-0 text-teal-200 hover:text-white hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl rounded"
+              class="mr-2 block rounded px-2 py-2 text-teal-200 hover:bg-white/30 hover:text-white hover:backdrop-blur-xl dark:hover:bg-black/30 md:mt-0 md:inline-block"
               routerLink="dashboard"
               routerLinkActive="bg-white/30 dark:bg-black/30 backdrop-blur-xl"
-            >Dashboard
+              >Dashboard
             </a>
           </div>
         </div>
         <!-- menu-1 end -->
         <!-- menu-2 -->
         <div
-          class="flex-auto flex-wrap px-4 md:flex md:items-center justify-end md:w-auto"
+          class="flex-auto flex-wrap justify-end px-4 md:flex md:w-auto md:items-center"
           id="menu-2"
         >
           <a
-            class="block py-2 px-2 mr-2 md:inline-block md:mt-0 text-teal-200 text-right hover:text-white hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl rounded"
+            class="mr-2 block rounded px-2 py-2 text-right text-teal-200 hover:bg-white/30 hover:text-white hover:backdrop-blur-xl dark:hover:bg-black/30 md:mt-0 md:inline-block"
             routerLink="about"
             routerLinkActive="bg-white/30 dark:bg-black/30 backdrop-blur-xl"
-          >About
+            >About
           </a>
         </div>
         <!--    menu-2 end    -->
@@ -45,7 +45,7 @@
               (click)="darkToggle()"
               aria-expanded="true"
               aria-haspopup="true"
-              class="text-sm px-3 py-2 leading-none border rounded text-white hover:border-transparent hover:text-teal-500 hover:bg-white my-1 inline-flex"
+              class="my-1 inline-flex rounded border px-3 py-2 text-sm leading-none text-white hover:border-transparent hover:bg-white hover:text-teal-500"
               id="menu-button"
               type="button"
             >
@@ -64,22 +64,22 @@
               </svg>
             </div>
             <div
-              [ngClass]="{ 'block': darkMenuIsOpen, 'hidden': !darkMenuIsOpen }"
-              class="text-white absolute right-0 z-10 mt-2 w-24 origin-top-right rounded backdrop-blur-xl bg-teal-900/90 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-center"
+              [ngClass]="{ block: darkMenuIsOpen, hidden: !darkMenuIsOpen }"
+              class="absolute right-0 z-10 mt-2 w-24 origin-top-right rounded bg-teal-900/90 text-center text-white shadow-lg ring-1 ring-black ring-opacity-5 backdrop-blur-xl focus:outline-none"
             >
               <div role="none">
                 <div
                   (click)="DarkMode(false)"
-                  class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl"
-                >Light
-                </div
+                  class="block rounded px-4 py-2 text-sm hover:bg-white/30 hover:backdrop-blur-xl dark:hover:bg-black/30"
                 >
+                  Light
+                </div>
                 <div
                   (click)="DarkMode(true)"
-                  class="block px-4 py-2 text-sm rounded hover:bg-white/30 dark:hover:bg-black/30 hover:backdrop-blur-xl"
-                >Dark
-                </div
+                  class="block rounded px-4 py-2 text-sm hover:bg-white/30 hover:backdrop-blur-xl dark:hover:bg-black/30"
                 >
+                  Dark
+                </div>
               </div>
             </div>
           </div>

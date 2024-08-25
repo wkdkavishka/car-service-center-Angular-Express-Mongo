@@ -1,20 +1,16 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {NgForOf, NgStyle} from "@angular/common";
-import {CarService} from "../../../services/car.service";
-import {Car} from "../../../models/car";
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { NgForOf, NgStyle } from '@angular/common';
+import { CarService } from '../../../services/car.service';
+import { Car } from '../../../models/car';
 
 @Component({
   selector: 'app-all-cars',
   standalone: true,
-  imports: [
-    NgForOf,
-    NgStyle
-  ],
+  imports: [NgForOf, NgStyle],
   templateUrl: './all-cars.component.html',
-  styleUrl: './all-cars.component.scss'
+  styleUrl: './all-cars.component.scss',
 })
 export class AllCarsComponent implements OnInit {
-
   @Output()
   returnCar: EventEmitter<Car> = new EventEmitter<Car>();
 
@@ -23,18 +19,19 @@ export class AllCarsComponent implements OnInit {
 
   // hashMapCars = new Map<string, Car>();
 
-  constructor(
-    private carService: CarService
-  ) {
-  }
+  constructor(private carService: CarService) {}
 
   ngOnInit(): void {
-    this.carService.AllCars().then((r) => this.cars = r)
+    this.carService
+      .AllCars()
+      .then((r) => (this.cars = r))
       .catch((err) => console.log(err));
   }
 
   refresh() {
-    this.carService.refreshCarList().then((r) => this.cars = r)
+    this.carService
+      .refreshCarList()
+      .then((r) => (this.cars = r))
       .catch((err) => console.log(err));
   }
 
@@ -50,5 +47,4 @@ export class AllCarsComponent implements OnInit {
       }
     }
   }
-
 }

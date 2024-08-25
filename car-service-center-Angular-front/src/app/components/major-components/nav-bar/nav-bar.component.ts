@@ -1,17 +1,13 @@
-import {Component} from '@angular/core';
-import {RouterLink, RouterLinkActive} from "@angular/router";
-import {NgClass} from "@angular/common";
+import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [
-    RouterLink,
-    RouterLinkActive,
-    NgClass
-  ],
+  imports: [RouterLink, RouterLinkActive, NgClass],
   templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.scss'
+  styleUrl: './nav-bar.component.scss',
 })
 export class NavBarComponent {
   darkMenuIsOpen: boolean = false;
@@ -25,7 +21,6 @@ export class NavBarComponent {
     }
     this.darkMenuIsOpen = false;
   }
-
 
   darkToggle() {
     this.darkMenuIsOpen = !this.darkMenuIsOpen;

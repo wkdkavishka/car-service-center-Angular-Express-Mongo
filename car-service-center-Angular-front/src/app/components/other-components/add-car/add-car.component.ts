@@ -1,24 +1,18 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormsModule} from "@angular/forms";
-import {NgForOf} from "@angular/common";
-import {CarDetailsComponent} from "../car-details/car-details.component";
-import {CarService} from "../../../services/car.service";
-import {Car} from "../../../models/car";
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgForOf } from '@angular/common';
+import { CarDetailsComponent } from '../car-details/car-details.component';
+import { CarService } from '../../../services/car.service';
+import { Car } from '../../../models/car';
 
 @Component({
   selector: 'app-add-car',
   standalone: true,
-  imports: [
-    FormsModule,
-    NgForOf,
-    CarDetailsComponent
-  ],
+  imports: [FormsModule, NgForOf, CarDetailsComponent],
   templateUrl: './add-car.component.html',
-  styleUrl: './add-car.component.scss'
+  styleUrl: './add-car.component.scss',
 })
-
 export class AddCarComponent implements OnInit {
-
   @ViewChild('carInput') carInput!: ElementRef;
 
   // for two-way binding
@@ -30,11 +24,10 @@ export class AddCarComponent implements OnInit {
   cars: Car[] = [];
 
   constructor(
-    private carService: CarService // service injector
+    private carService: CarService, // service injector
   ) {
-    this.carService.AllCars().then((r) => this.cars = r);
+    this.carService.AllCars().then((r) => (this.cars = r));
     // console.log("constructor called"); // testing ################
-
   }
 
   ngOnInit() {
@@ -52,14 +45,16 @@ export class AddCarComponent implements OnInit {
       car_model: this.car_model,
       car_numberplate: this.car_numberplate,
       job_status: true, // by default
-      job_progress: 0 // by default
+      job_progress: 0, // by default
     };
 
     // this.cars seems to be sync with carService's cars list
     // add car to the service
-    this.carService.addACar(newCar).then(
+    this.carService
+      .addACar(newCar)
+      .then
       // r => this.carService.cars.push(r)
-    );
+      ();
 
     // clear fields after submit
     this.owner = '';
@@ -68,5 +63,4 @@ export class AddCarComponent implements OnInit {
     // Set focus to the input element
     this.carInput.nativeElement.focus();
   }
-
 }

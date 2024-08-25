@@ -1,23 +1,17 @@
-import {Injectable} from '@angular/core';
-import {Car} from '../models/car';
-import {firstValueFrom} from "rxjs";
-import {ApiService} from "./api/api.service";
+import { Injectable } from '@angular/core';
+import { Car } from '../models/car';
+import { firstValueFrom } from 'rxjs';
+import { ApiService } from './api/api.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class CarService {
-
   fetched: boolean = false;
   cars: Car[] = []; // and Empty Array of Car  // cars: Array<Car> = [];
 
-  constructor(
-    private apiService: ApiService
-  ) {
-    this.initialize().then(
-      () => console.log("Car service initialized")
-    );
+  constructor(private apiService: ApiService) {
+    this.initialize().then(() => console.log('Car service initialized'));
   }
 
   // todo -> implement -> fetch cars with limit of n
@@ -39,7 +33,9 @@ export class CarService {
       return this.cars;
     } else {
       try {
-        return this.cars = await firstValueFrom(this.apiService.fetchAllCars());
+        return (this.cars = await firstValueFrom(
+          this.apiService.fetchAllCars(),
+        ));
       } catch (error) {
         console.error('Error fetching cars:', error);
         throw error;
@@ -96,16 +92,16 @@ export class CarService {
   }
 
   findAndRemoveDuplicateCars(cars: Car[]): Car[] {
-    let seen: Car[] = [];
-    console.log("cars length",cars.length);
+    const seen: Car[] = [];
+    console.log('cars length', cars.length);
     seen.push(cars[0]);
     cars.forEach((car) => {
-      if(this.carExists(cars,car._id)){
+      if (!this.carExists(seen, car._id)) {
         seen.push(car);
       }
-      console.log("seen :",car);
-    })
-
+      console.log('seen :', car);
+    });
+    console.log(seen);
     return seen;
   }
 
@@ -129,13 +125,15 @@ export class CarService {
     }
   }
 
-  private carExists(cars: Car[], id:string): boolean {
-    for(let i=0;i<this.cars.length; i++){
-      if(cars[i]._id == id){return true;}
+  private carExists(cars: Car[], id: string): boolean {
+    if (cars == null) {
+      return false;
+    }
+    for (let i = 0; i < this.cars.length; i++) {
+      if (cars[i]?._id === id) {
+        return true;
+      }
     }
     return false;
   }
-
-
-
 }

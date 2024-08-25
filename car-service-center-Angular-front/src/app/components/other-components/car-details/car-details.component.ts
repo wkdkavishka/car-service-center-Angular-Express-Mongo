@@ -1,20 +1,15 @@
-import {Component, Input, OnInit,} from '@angular/core';
-import {CarService} from "../../../services/car.service";
-import {Car} from "../../../models/car";
-import {NgClass, NgIf, NgStyle} from "@angular/common";
-import {FormsModule} from "@angular/forms";
+import { Component, Input, OnInit } from '@angular/core';
+import { CarService } from '../../../services/car.service';
+import { Car } from '../../../models/car';
+import { NgClass, NgIf, NgStyle } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-car-details',
   standalone: true,
-  imports: [
-    NgIf,
-    NgClass,
-    NgStyle,
-    FormsModule
-  ],
+  imports: [NgIf, NgClass, NgStyle, FormsModule],
   templateUrl: './car-details.component.html',
-  styleUrl: './car-details.component.scss'
+  styleUrl: './car-details.component.scss',
 })
 export class CarDetailsComponent implements OnInit {
   // @ViewChild('jobStatus') carInput!: ElementRef;
@@ -26,12 +21,9 @@ export class CarDetailsComponent implements OnInit {
   // for data binding
   isStatusDropdownOpen: boolean = false; //
   isProgressDropdownOpen: boolean = false; //
-  selectedTab: string = "stats"; // default tab
+  selectedTab: string = 'stats'; // default tab
 
-  constructor(
-    private carService: CarService
-  ) {
-  }
+  constructor(private carService: CarService) {}
 
   ngOnInit(): void {
     // Check if givenCar is undefined or null and set default values
@@ -42,7 +34,7 @@ export class CarDetailsComponent implements OnInit {
         car_numberplate: 'XXX-0000',
         _id: '-1',
         job_status: false, // Default to false (e.g., closed)
-        job_progress: -1 // Default to 0 (e.g., no progress)
+        job_progress: -1, // Default to 0 (e.g., no progress)
       };
     }
   }
@@ -62,14 +54,16 @@ export class CarDetailsComponent implements OnInit {
 
   onUpdate() {
     // todo -> fix this messy update // stop replacing
-    console.log("given car before ", this.givenCar);
-    this.carService.updateACar(this.givenCar).then((r) => {
-        console.log("r->", r);
+    console.log('given car before ', this.givenCar);
+    this.carService
+      .updateACar(this.givenCar)
+      .then((r) => {
+        console.log('r->', r);
         this.givenCar = r;
-      }
-    ).catch((err) => {
-      console.log(err)
-    });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   toggleDropdownStatus(): void {
@@ -97,10 +91,8 @@ export class CarDetailsComponent implements OnInit {
     if (status === undefined) {
       return this.carService.cars.length;
     } else {
-      return this.carService.cars.filter(
-        car => car.job_status === status
-      ).length;
+      return this.carService.cars.filter((car) => car.job_status === status)
+        .length;
     }
   }
-
 }

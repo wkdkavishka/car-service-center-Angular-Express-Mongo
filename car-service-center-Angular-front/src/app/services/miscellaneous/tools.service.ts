@@ -1,13 +1,11 @@
-import {Injectable} from '@angular/core';
-import {Car} from "../../models/car";
+import { Injectable } from '@angular/core';
+import { Car } from '../../models/car';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ToolsService {
-
-  constructor() {
-  }
+  constructor() {}
 
   /**
    * Searches for a specific car in an array of cars and removes it if found.
