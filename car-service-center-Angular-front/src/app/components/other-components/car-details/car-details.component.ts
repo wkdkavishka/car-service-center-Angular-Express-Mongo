@@ -19,9 +19,9 @@ export class CarDetailsComponent implements OnInit {
   givenCar!: Car; // The selected car from all-cars component
 
   // for data binding
-  isStatusDropdownOpen: boolean = false; //
-  isProgressDropdownOpen: boolean = false; //
-  selectedTab: string = 'stats'; // default tab
+  isStatusDropdownOpen = false; //
+  isProgressDropdownOpen = false; //
+  selectedTab = 'stats'; // default tab
 
   constructor(private carService: CarService) {}
 
@@ -93,6 +93,13 @@ export class CarDetailsComponent implements OnInit {
     } else {
       return this.carService.cars.filter((car) => car.job_status === status)
         .length;
+    }
+  }
+
+  onKeyDown(event: KeyboardEvent, callback: ProcessFunction): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      callback();
+      event.preventDefault();
     }
   }
 }

@@ -14,6 +14,8 @@
       <th class="px-1 py-2" scope="col">
         <div
           (click)="refresh()"
+          (keydown)="onKeyDown($event)"
+          tabindex="0"
           [ngStyle]="{ cursor: 'pointer', 'user-select': 'none' }"
           class="inline-flex rounded px-2 py-1 text-sm leading-none text-green-500 hover:border-transparent hover:bg-green-600 hover:text-slate-100"
         >

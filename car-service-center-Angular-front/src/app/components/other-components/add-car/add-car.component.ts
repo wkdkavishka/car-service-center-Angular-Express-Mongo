@@ -16,9 +16,9 @@ export class AddCarComponent implements OnInit {
   @ViewChild('carInput') carInput!: ElementRef;
 
   // for two-way binding
-  owner: string = '';
-  car_model: string = '';
-  car_numberplate: string = '';
+  owner = '';
+  car_model = '';
+  car_numberplate = '';
 
   // cars: Array<{ brand: string; model: string; numberplate: string }> = [];
   cars: Car[] = [];

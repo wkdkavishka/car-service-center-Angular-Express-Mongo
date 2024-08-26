@@ -7,7 +7,7 @@ import { ApiService } from './api/api.service';
   providedIn: 'root',
 })
 export class CarService {
-  fetched: boolean = false;
+  fetched = false;
   cars: Car[] = []; // and Empty Array of Car  // cars: Array<Car> = [];
 
   constructor(private apiService: ApiService) {
@@ -72,7 +72,7 @@ export class CarService {
 
   async deleteACar(car: Car): Promise<void> {
     try {
-      let d_car = await firstValueFrom(this.apiService.deleteACar(car));
+      const d_car = await firstValueFrom(this.apiService.deleteACar(car));
       this.findAndDeleteCar(d_car);
       console.log('Car Deleted successfully:', d_car);
       // return d_car;

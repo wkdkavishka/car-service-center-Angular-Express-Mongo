@@ -10,7 +10,7 @@ import { NgClass } from '@angular/common';
   styleUrl: './nav-bar.component.scss',
 })
 export class NavBarComponent {
-  darkMenuIsOpen: boolean = false;
+  darkMenuIsOpen = false;
 
   DarkMode(isDarkMode: boolean): void {
     const html = document.documentElement; // Target the <html> element
@@ -24,5 +24,12 @@ export class NavBarComponent {
 
   darkToggle() {
     this.darkMenuIsOpen = !this.darkMenuIsOpen;
+  }
+
+  onKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      this.darkToggle();
+      event.preventDefault();
+    }
   }
 }

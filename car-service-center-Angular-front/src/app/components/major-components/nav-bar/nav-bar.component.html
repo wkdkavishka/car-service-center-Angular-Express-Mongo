@@ -43,13 +43,15 @@
           <div class="relative inline-block text-right">
             <div
               (click)="darkToggle()"
+              (keydown)="onKeyDown($event)"
+              tabindex="0"
               aria-expanded="true"
               aria-haspopup="true"
               class="my-1 inline-flex rounded border px-3 py-2 text-sm leading-none text-white hover:border-transparent hover:bg-white hover:text-teal-500"
               id="menu-button"
               type="button"
             >
-              <label class="hidden sm:block"> Colour </label>
+              <div class="hidden sm:block">Colour</div>
               <svg
                 aria-hidden="true"
                 class="h-4 w-4 text-gray-400"
@@ -70,12 +72,16 @@
               <div role="none">
                 <div
                   (click)="DarkMode(false)"
+                  (keydown)="onKeyDown($event)"
+                  tabindex="0"
                   class="block rounded px-4 py-2 text-sm hover:bg-white/30 hover:backdrop-blur-xl dark:hover:bg-black/30"
                 >
                   Light
                 </div>
                 <div
                   (click)="DarkMode(true)"
+                  (keydown)="onKeyDown($event)"
+                  tabindex="0"
                   class="block rounded px-4 py-2 text-sm hover:bg-white/30 hover:backdrop-blur-xl dark:hover:bg-black/30"
                 >
                   Dark

@@ -19,11 +19,11 @@ export class ListCarByJobComponent implements OnInit {
   cars: Car[] = [];
   found_cars: Car[] = []; // to temporary hold
   // for data binding
-  job_progress: number = -1; //
+  job_progress = -1; //
   job_status: boolean | null = null;
   isProgressDropdownOpen = false; //
   isStatusDropdownOpen = false;
-  car_numberplate: string = '';
+  car_numberplate = '';
 
   constructor(private carService: CarService) {}
 
@@ -92,5 +92,12 @@ export class ListCarByJobComponent implements OnInit {
 
   toggleDropdownStatus() {
     this.isStatusDropdownOpen = !this.isStatusDropdownOpen;
+  }
+
+  onKeyDown(event: KeyboardEvent, callback: ProcessFunction): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      callback();
+      event.preventDefault();
+    }
   }
 }

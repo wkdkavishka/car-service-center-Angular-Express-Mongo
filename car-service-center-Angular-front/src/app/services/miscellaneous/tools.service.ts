@@ -5,8 +5,6 @@ import { Car } from '../../models/car';
   providedIn: 'root',
 })
 export class ToolsService {
-  constructor() {}
-
   /**
    * Searches for a specific car in an array of cars and removes it if found.
    *

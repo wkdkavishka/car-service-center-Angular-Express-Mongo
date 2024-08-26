@@ -7,3 +7,12 @@ export interface Car {
   job_progress: number;
   _id: string;
 }
+
+export interface SerializedCar {
+  owner: string;
+  car_model: string;
+  car_numberplate: string;
+  job_status: string;
+  job_progress: string;
+  _id: string;
+}

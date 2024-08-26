@@ -47,4 +47,11 @@ export class AllCarsComponent implements OnInit {
       }
     }
   }
+
+  onKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      this.refresh();
+      event.preventDefault();
+    }
+  }
 }
