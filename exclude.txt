@@ -1,4 +1,7 @@
 car-service.pem
+
+.git/
+
 /car-service-center-Angular-front/node_modules
 /car-service-center-Angular-front/.git
 /car-service-center-Angular-front/dist
